@@ -1,0 +1,127 @@
+
+        // Attendre que le DOM soit chargé
+        document.addEventListener('DOMContentLoaded', () => {
+            // Correction hamburger menu
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+
+            if (hamburger && sidebar && mainContent) {
+                hamburger.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                    mainContent.classList.toggle('full-width');
+                    hamburger.setAttribute('aria-expanded', sidebar.classList.contains('active'));
+                });
+            } else {
+                console.error('Hamburger, sidebar, or main-content not found');
+            }
+
+            // Correction mode clair/sombre
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            let currentTheme = localStorage.getItem('theme') || 'light';
+            document.body.dataset.theme = currentTheme;
+            updateThemeIcon();
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    document.body.dataset.theme = currentTheme;
+                    localStorage.setItem('theme', currentTheme);
+                    updateThemeIcon();
+                });
+            }
+
+            function updateThemeIcon() {
+                themeIcon.className = currentTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+
+            // Gestion sécurisée des liens sidebar
+            const anchors = document.querySelectorAll('.sidebar a');
+            anchors.forEach(anchor => {
+                if (anchor) {
+                    anchor.addEventListener('click', (e) => {
+                        const href = anchor.getAttribute('href');
+                        if (href) {
+                            console.log(`Navigating to ${href}`);
+                            // Ajoute ici ta logique pour les clics
+                        }
+                    });
+                }
+            });
+
+            // Correction graphiques Chart.js
+            const fuelCostCanvas = document.getElementById('fuelCostChart');
+            const maintenanceTypeCanvas = document.getElementById('maintenanceTypeChart');
+            const consumptionCanvas = document.getElementById('consumptionChart');
+
+            if (fuelCostCanvas && maintenanceTypeCanvas && consumptionCanvas) {
+                // Graphique 1: Coût carburant par mois (Bar)
+                const fuelCostChart = new Chart(fuelCostCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai'],
+                        datasets: [{
+                            label: 'Coût (€)',
+                            data: [1200, 1500, 1400, 1600, 2500],
+                            backgroundColor: 'rgba(30, 58, 138, 0.6)',
+                            borderColor: 'rgba(30, 58, 138, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+
+                // Graphique 2: Types de maintenance (Pie)
+                const maintenanceTypeChart = new Chart(maintenanceTypeCanvas, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Vidange', 'Réparation', 'Contrôle Technique'],
+                        datasets: [{
+                            label: 'Nombre',
+                            data: [10, 5, 3],
+                            backgroundColor: [
+                                'rgba(30, 58, 138, 0.6)',
+                                'rgba(220, 38, 38, 0.6)',
+                                'rgba(75, 85, 99, 0.6)'
+                            ],
+                            borderColor: [
+                                'rgba(30, 58, 138, 1)',
+                                'rgba(220, 38, 38, 1)',
+                                'rgba(75, 85, 99, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+
+                // Graphique 3: Consommation moyenne par véhicule (Line)
+                const consumptionChart = new Chart(consumptionCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: ['Peugeot 308', 'Renault Clio', 'Iveco Daily'],
+                        datasets: [{
+                            label: 'Consommation (L/100 km)',
+                            data: [7.0, 6.5, 8.0],
+                            fill: false,
+                            borderColor: 'rgba(30, 58, 138, 1)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            } else {
+                console.error('One or more chart canvases not found');
+            }
+        });

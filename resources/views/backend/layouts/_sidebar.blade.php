@@ -1,0 +1,86 @@
+<div class="sidebar" id="sidebar">
+
+        <img src="{{asset('images/imgSam.jpg')}}" alt="Photo de profil" class="profile-pic">
+        <div class="info-img">
+            <span class="name-s">Name</span>
+            <span class="email-s d-block mb-1">name@gmail.com</span>
+        </div>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/dashboard"><i class="fas fa-tachometer-alt me-2"></i> Tableau de
+                    Bord</a>
+
+            </li>
+            <!-- Ajout du dropdown Utilisateur -->
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fas fa-users me-2"></i> Utilisateur
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="/users"><i class="fas fa-user-shield me-2"></i> Admin</a></li>
+                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Comptable</a>
+                    <li><a class="dropdown-item" href="/users"><i class="fas fa-user-shield me-2"></i> Chauffeur</a></li>
+                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Gestionnaire</a>
+                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Fournisseur</a>
+                    </li>
+
+                </ul>
+            </li>
+            <!-- Fin du dropdown Utilisateur -->
+            <li class="nav-item">
+                <a class="nav-link" href="/vehicles"><i class="fas fa-car me-2"></i> Véhicules</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fas fa-wrench me-2"></i> Maintenance
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="/"><i class="fas fa-clipboard-list me-2"></i> Suivi
+                            Maintenance</a></li>
+            </li>
+        </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/fuel-consumption"><i class="fas fa-gas-pump me-2"></i>
+                Carburant</a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/help"><i class="fas fa-question-circle me-2"></i> Aide</a>
+        </li>
+
+
+        <!-- Ajout du dropdown Attribution -->
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="assignmentDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-user-check me-2"></i> Attribution
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="assignmentDropdown">
+                <li><a class="dropdown-item" href="/assign-vehicle"><i class="fas fa-car me-2"></i> Attribuer</a>
+                </li>
+                <li><a class="dropdown-item" href="/assignment-history"><i class="fas fa-history me-2"></i>
+                        Historique</a></li>
+            </ul>
+        </li>
+        <!-- Fin du dropdown Attribution -->
+
+        <li class="nav-item">
+            <a class="nav-link" href="/profile"><i class="fas fa-user me-2"></i> Profil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
+        </li>
+        </ul>
+    </div>
+
+       <!-- Hamburger menu pour mobile -->
+    <!-- Correction pour visibilité et fonctionnalité -->
+    <div class="hamburger" id="hamburger" aria-controls="sidebar" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </div>
