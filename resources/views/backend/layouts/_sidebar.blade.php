@@ -2,8 +2,8 @@
 
         <img src="{{asset('images/imgSam.jpg')}}" alt="Photo de profil" class="profile-pic">
         <div class="info-img">
-            <span class="name-s">Name</span>
-            <span class="email-s d-block mb-1">name@gmail.com</span>
+            <span class="name-s">{{ Auth::user()->nom }}</span>
+            <span class="email-s d-block mb-1">{{ Auth::user()->email }}</span>
         </div>
 
         <ul class="nav flex-column">
@@ -74,7 +74,7 @@
             <a class="nav-link" href="/profile"><i class="fas fa-user me-2"></i> Profil</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
+            <a class="nav-link" href="{{url('logout')}}"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
         </li>
         </ul>
     </div>

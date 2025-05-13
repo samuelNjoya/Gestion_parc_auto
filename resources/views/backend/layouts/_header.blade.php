@@ -6,7 +6,7 @@
                 <i class="fas fa-sun"></i>
             </button>
             <div class="user-info mx-2">
-                <span>Bonjour <strong>Jean Dupont</strong></span>
+                <span>Bonjour <strong>{{ Auth::user()->nom }}</strong></span>
             </div>
             <div class="dropdown">
                 <img src="{{asset('images/imgSam.jpg')}}" alt="Photo de profil" class="profile-pic" id="profileDropdown"
@@ -15,7 +15,7 @@
                     <li><a class="dropdown-item" href="/profile"><i class="fas fa-user me-2"></i> Voir Profil</a></li>
                     <li><a class="dropdown-item" href="/edit-profile"><i class="fas fa-edit me-2"></i> Modifier
                             Profil</a></li>
-                    <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
+                    <li><a class="dropdown-item" href="{{url('logout')}}"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
                     </li>
                 </ul>
             </div>

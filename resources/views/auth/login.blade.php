@@ -6,6 +6,7 @@
     <title>Connexion - Gestion PA</title>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Variables CSS pour les thèmes clair et sombre */
         :root {
@@ -183,7 +184,10 @@
     <div class="login-container">
         <div class="login-card">
             <div class="logo">LOGIN</div>
-            <form class="login-form">
+            <form class="login-form" method="POST">
+                  @include('_message')
+                        {{-- @csrf --}}
+                        {{ csrf_field() }}
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required placeholder="Entrez votre email">

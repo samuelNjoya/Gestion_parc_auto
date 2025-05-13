@@ -26,23 +26,24 @@ class AuthController extends Controller
         //     'email'   => 'required|email',
         //     'password' => 'required|min:6'
         // ]);
-           if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_delete' => 0, 'status' => 1], true)){
+           if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_delete' => 0, 'statut' => 1], true)){
 
-             if(Auth::user()->is_admin == 5)
-             {
-                return redirect('teacher/dashboard');
-             }else if(Auth::user()->is_admin == 6)
-             {
-                return redirect('student/dashboard');
-             }else
-             {
-                return redirect('panel/dashboard');
-             }
+            //  if(Auth::user()->is_admin == 5)
+            //  {
+            //     return redirect('teacher/dashboard');
+            //  }else if(Auth::user()->is_admin == 6)
+            //  {
+            //     return redirect('student/dashboard');
+            //  }else
+            //  {
+            //     return redirect('panel/dashboard');
+            //  }
            
+             return redirect('panel/dashboard');
             
            }else{
 
-            return redirect()->back()->with('error','enter current email and password');
+            return redirect()->back()->with('error','Entrer un email ou password valide');
            }
     }
 

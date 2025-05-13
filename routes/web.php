@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[AuthController::class,'login']);
 Route::get('logout',[AuthController::class, 'logout']);
+Route::post('/',[AuthController::class, 'auth_login']);
 
 //Dashboard
 Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
