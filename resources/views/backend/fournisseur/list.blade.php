@@ -48,7 +48,7 @@
                                 <label class=""></label>
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary" >Filtrer</button>
-                                    <a class="btn btn-secondary" href="{{url('panel/gestionnaire')}}" > Réinitialiser</a>
+                                    <a class="btn btn-secondary" href="{{url('panel/fournisseur')}}" > Réinitialiser</a>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +59,8 @@
                 <div class="">
 
                     <div class="d-flex justify-content-between mb-1">
-                        <h3 class="">liste des gestionnaires</h3>
-                        <a href="{{url('panel/gestionnaire/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter gestionnaire</a>
+                        <h3 class="">liste des fournisseurs</h3>
+                        <a href="{{url('panel/fournisseur/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter fournisseur</a>
                     </div>
 
                       <div class="table-responsive">
@@ -69,7 +69,6 @@
                                     <tr>
                                   
                                         <th>#<button class="btn btn-link p-0" onclick="sortTable(0)"><i class="fas fa-sort"></i></button></th>
-                                        <th>Profile</th>
                                         <th>Nom <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
                                         <th>Prenom <button class="btn btn-link p-0" onclick="sortTable(2)"><i class="fas fa-sort"></i></button></th>
                                         <th>Email <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
@@ -85,11 +84,6 @@
                                 @forelse ($getRecords as $item)  
                                     <tr >
                                             <td >{{$item->id}}</td>
-                                            <td >
-                                                @if (!empty($item->getProfile()))
-                                                    <img style="border-radius: 50%" width="60px" height="60px"  src="{{ $item->getProfile() }}" alt="">
-                                                @endif
-                                            </td>
                                             <td >{{$item->nom}}</td>
                                             <td >{{$item->prenom}}</td>
                                             <td >{{$item->email}}</td>
@@ -104,8 +98,8 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/gestionnaire/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ url('panel/gestionnaire/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
+                                                <a href="{{ url('panel/fournisseur/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ url('panel/fournisseur/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr> 
                                 @empty

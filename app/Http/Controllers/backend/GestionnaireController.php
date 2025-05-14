@@ -22,6 +22,12 @@ class GestionnaireController extends Controller
         return view('backend.gestionnaire.create', $data);
     }
 
+     public function gestionnaire_view($id){
+        $data['getRecords'] = User::getSingle($id);  // $data['getRecord'] = User::getEmploye();
+        $data['meta_title'] = "informations gestionnaire";
+        return view('backend.gestionnaire.view', $data);
+    }
+
     public function gestionnaire_insert(Request $request){
         request()->validate([
            'email' => 'required|email|unique:users',

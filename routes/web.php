@@ -26,6 +26,7 @@ Route::get('panel/aide',[UserController::class, 'aide']);
    Route::get('panel/gestionnaire',[GestionnaireController::class, 'gestionnaire_list']);
    Route::get('panel/gestionnaire/create',[GestionnaireController::class, 'gestionnaire_create']);
    Route::post('panel/gestionnaire/create',[GestionnaireController::class, 'gestionnaire_insert']);
+   Route::get('panel/gestionnaire/view/{id}',[GestionnaireController::class, 'gestionnaire_view']);
    Route::get('panel/gestionnaire/edit/{id}',[GestionnaireController::class, 'gestionnaire_edit']);
    Route::post('panel/gestionnaire/edit/{id}',[GestionnaireController::class, 'gestionnaire_update']);
    Route::get('panel/gestionnaire/delete/{id}',[GestionnaireController::class, 'gestionnaire_delete']);

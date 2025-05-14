@@ -4,7 +4,7 @@
  <div class="add-form-container fade-in">
             <!-- Formulaire d'ajout d'un conducteur -->
             <div class="card">
-                <h2>Ajouter un gestionnaire</h2>
+                <h2>Ajouter un fournisseur</h2>
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
                      <div class="form-group side-by-side">
@@ -19,39 +19,6 @@
                             <label for="first_name">Prénom <span class="required">*</span></label>
                             <input type="text" id="first_name" name="prenom"  aria-required="true"
                                 placeholder="Entrez le prénom" value="{{ old('prenom') }}">
-                        </div>
-                    </div>
-                    
-
-                   
-
-                    <!-- Champs Date de naissance et Numéro de permis (côte à côte) -->
-                    <div class="form-group side-by-side">
-                        <div>
-                            <label for="birth_date">Date de naissance <span class="required">*</span></label>
-                            <input type="date" id="birth_date" name="date_naiss"  aria-required="true" value="{{ old('date_naiss') }}">
-                        </div>
-                        <div>
-                            <label for="license_number">mot de pass <span class="required">*</span></label>
-                            <input type="password" id="license_number" name="motDePass" aria-required="true"
-                                placeholder="*******">
-                        </div>
-                    </div>
-
-                    <!-- Champs Type de permis et Date d'expiration (côte à côte) -->
-                    <div class="form-group side-by-side">
-                        <div>
-                            <label for="license_type">Departement <span class="required">*</span></label>
-                            <select id="license_type" name="departement" aria-required="true" value="{{ old('departement') }}">
-                                <option value="">Sélectionnez</option>
-                                <option value="departement1">departement1</option>
-                                <option value="departement2">departement2</option>
-                                <option value="departement3">departement3</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="license_expiry">Address <span class="required">*</span></label>
-                            <input type="text" id="license_expiry" name="address"  aria-required="true" value="{{ old('address') }}">
                         </div>
                     </div>
 
@@ -72,17 +39,13 @@
                         </div>
                     </div>
 
-
-                   
-                    <!-- Champ Photo avec aperçu -->
-                    <div class="form-group">
-                        <label for="photo">Photo</label>
-                        <input type="file" id="photo" name="profile_pic" accept="image/*" aria-describedby="photoHelp" value="{{ old('profile_pic') }}">
-                        <!-- <small id="photoHelp" class="form-text">Choisissez une image (JPEG, PNG).</small> -->
-                        <div class="photo-preview">
-                            <img id="photoPreview"  alt="">
+                      <div class="form-group ">
+                        <div>
+                            <label for="license_expiry">Address <span class="required">*</span></label>
+                            <input type="text" id="license_expiry" placeholder="Entrez l'addresse" name="address"  aria-required="true" value="{{ old('address') }}">
                         </div>
                     </div>
+
 
                     <div class="form-group">
                             <label for="license_type">Statut <span class="required">*</span></label>

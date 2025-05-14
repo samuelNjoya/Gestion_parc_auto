@@ -104,6 +104,7 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
+                                                <a href="{{ url('panel/gestionnaire/view', $item->id) }}" class="btn btn-success btn-sm"><i class="fa-regular fa-eye"></i></a>
                                                 <a href="{{ url('panel/gestionnaire/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ url('panel/gestionnaire/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                             </td>
