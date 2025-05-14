@@ -9,7 +9,7 @@
                 <span>Bonjour <strong>{{ Auth::user()->nom }}</strong></span>
             </div>
             <div class="dropdown">
-                <img src="{{asset('images/imgSam.jpg')}}" alt="Photo de profil" class="profile-pic" id="profileDropdown"
+                <img src="{{ Auth::user()->getProfileLive() }}" alt="{{ Auth::user()->name }}" alt="Photo de profil" class="profile-pic" id="profileDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                     <li><a class="dropdown-item" href="/profile"><i class="fas fa-user me-2"></i> Voir Profil</a></li>

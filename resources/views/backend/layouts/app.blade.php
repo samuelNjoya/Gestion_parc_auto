@@ -12,8 +12,9 @@
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
     <link rel="stylesheet" href="{{asset('styles/app.css')}}">
+     <link rel="stylesheet" href="{{asset('styles/forms.css')}}">
     @stack('styles')
-
+     @yield('styles')
 </head>
 
 <body>
@@ -40,6 +41,7 @@
     <script src="{{asset('scripts/app.js')}}"></script>
 
     @stack('scripts')
+    @yield('scripts')
 </body>
 
 </html>

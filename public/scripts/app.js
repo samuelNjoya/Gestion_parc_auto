@@ -1,5 +1,20 @@
 
-        // Attendre que le DOM soit chargé
+        // Tri du tableau
+        let sortDirection = 1;
+        function sortTable(columnIndex) {
+            const tbody = document.getElementById('TriTableBody');
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            rows.sort((a, b) => {
+                const aValue = a.getElementsByTagName('td')[columnIndex].textContent.trim();
+                const bValue = b.getElementsByTagName('td')[columnIndex].textContent.trim();
+                return aValue.localeCompare(bValue, undefined, { numeric: true }) * sortDirection;
+            });
+            rows.forEach(row => tbody.appendChild(row));
+            sortDirection *= -1;
+        }
+       
+       
+       // Attendre que le DOM soit chargé
         document.addEventListener('DOMContentLoaded', () => {
             // Correction hamburger menu
             const hamburger = document.getElementById('hamburger');

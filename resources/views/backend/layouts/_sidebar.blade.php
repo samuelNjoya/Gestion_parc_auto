@@ -1,6 +1,7 @@
 <div class="sidebar" id="sidebar">
 
-        <img src="{{asset('images/imgSam.jpg')}}" alt="Photo de profil" class="profile-pic">
+        {{-- <img src="{{asset('images/imgSam.jpg')}}" alt="Photo de profil" class="profile-pic"> --}}
+        <img src="{{ Auth::user()->getProfileLive() }}" alt="{{ Auth::user()->name }}" class="profile-pic"/>
         <div class="info-img">
             <span class="name-s">{{ Auth::user()->nom }}</span>
             <span class="email-s d-block mb-1">{{ Auth::user()->email }}</span>
@@ -8,7 +9,7 @@
 
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard"><i class="fas fa-tachometer-alt me-2"></i> Tableau de
+                <a class="nav-link {{ (Request::segment(2) == 'dashboard') ? 'active' : '' }}" href="{{url('panel/dashboard')}}"><i class="fas fa-tachometer-alt me-2"></i> Tableau de
                     Bord</a>
 
             </li>
@@ -20,16 +21,18 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="/users"><i class="fas fa-user-shield me-2"></i> Admin</a></li>
-                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Comptable</a>
+                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Comptable</a></li>
                     <li><a class="dropdown-item" href="/users"><i class="fas fa-user-shield me-2"></i> Chauffeur</a></li>
-                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Gestionnaire</a>
+                    <li class="{{ (Request::segment(2) == 'gestionnaire') ? 'active' : '' }}">
+                        <a class="dropdown-item"  href="{{url('panel/gestionnaire')}}"><i class="fas fa-calculator me-2"></i> Gestionnaire</a>
+                    </li>
                     <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Fournisseur</a>
                     </li>
 
                 </ul>
             </li>
             <!-- Fin du dropdown Utilisateur -->
-            <li class="nav-item">
+            <li class="nav-item" class="{{ (Request::segment(2) == 'vehicule') ? 'active' : '' }}">
                 <a class="nav-link" href="/vehicles"><i class="fas fa-car me-2"></i> Véhicules</a>
             </li>
 
@@ -51,7 +54,7 @@
 
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/help"><i class="fas fa-question-circle me-2"></i> Aide</a>
+            <a class="nav-link {{ (Request::segment(2) == 'aide') ? 'active' : '' }}" href="{{url('panel/aide')}}"><i class="fas fa-question-circle me-2"></i> Aide</a>
         </li>
 
 

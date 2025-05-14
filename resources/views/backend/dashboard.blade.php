@@ -109,5 +109,51 @@
                     </div>
                 </div>
             </div>
+            <!-- Tableau des véhicules -->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Immatriculation <button class="btn btn-link p-0" onclick="sortTable(0)"><i class="fas fa-sort"></i></button></th>
+                        <th>Modèle <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
+                        <th>Kilométrage <button class="btn btn-link p-0" onclick="sortTable(2)"><i class="fas fa-sort"></i></button></th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="vehicleTableBody">
+                    <tr>
+                        <td>AB-123-CD</td>
+                        <td>Peugeot 208</td>
+                        <td>45 000 km</td>
+                        <td><span class="badge bg-success">En service</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info" onclick="editVehicle(this)"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteVehicle(this)"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>XY-456-ZD</td>
+                        <td>Renault Clio</td>
+                        <td>78 000 km</td>
+                        <td><span class="badge bg-warning">En maintenance</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info" onclick="editVehicle(this)"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteVehicle(this)"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>EF-789-GH</td>
+                        <td>Citroën C3</td>
+                        <td>120 000 km</td>
+                        <td><span class="badge bg-danger">Hors service</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info" onclick="editVehicle(this)"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteVehicle(this)"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         </div>
 @endsection
