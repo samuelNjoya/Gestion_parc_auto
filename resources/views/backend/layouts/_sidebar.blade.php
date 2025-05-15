@@ -32,8 +32,8 @@
                 </ul>
             </li>
             <!-- Fin du dropdown Utilisateur -->
-            <li class="nav-item" class="{{ (Request::segment(2) == 'vehicule') ? 'active' : '' }}">
-                <a class="nav-link" href="/vehicles"><i class="fas fa-car me-2"></i> Véhicules</a>
+            <li class="nav-item " >
+                <a class="nav-link {{ (Request::segment(2) == 'vehicule') ? 'active' : '' }}" href="{{url('panel/vehicule')}}"><i class="fas fa-car me-2"></i> Véhicules</a>
             </li>
 
 
