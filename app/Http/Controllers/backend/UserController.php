@@ -12,10 +12,10 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
 
-   public function my_account(){
+   public function mon_compte(){
         $data['getRecord'] = User::getSingle(Auth::user()->id);
-        $data['meta_title'] = "my account";
-        return view('backend.my_account',$data);
+        $data['meta_title'] = "mon compte";
+        return view('backend.profile',$data);
    }
 
    public function update_account(Request $request){
@@ -41,12 +41,12 @@ class UserController extends Controller
 
     $user->save();
 
-    return redirect()->back()->with('success','Account successifuly updated');
+    return redirect()->back()->with('success','compte mis a jour avec success');
    }
 
 
-    public function change_password(){
-        $data['meta_title'] = "Change password";
+    public function changer_password(){
+        $data['meta_title'] = "Changer password";
          return view('backend.change_password',$data);
     }
 
@@ -60,16 +60,16 @@ class UserController extends Controller
              $user->password = Hash::make($request->new_password);
              $user->save();
 
-             return redirect()->back()->with('success','password successifuly updated');
+             return redirect()->back()->with('success','password mis a jour avec success');
           }
           else
           {
-            return redirect()->back()->with('error','Old password is not correct');
+            return redirect()->back()->with('error','ancien mot de pass pas correct');
           }
        }
        else
        {
-        return redirect()->back()->with('error','New password and Confirm password does not match');
+        return redirect()->back()->with('error','les mots de pass ne correspondent pas');
        }
     }
 

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\backend\ComptableController;
+use App\Http\Controllers\backend\ConducteurController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\GestionnaireController;
 use App\Http\Controllers\backend\FournisseurController;
@@ -21,6 +23,8 @@ Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
 
 //Dashboard
 Route::get('panel/aide',[UserController::class, 'aide']);
+Route::get('panel/mon_compte',[UserController::class, 'mon_compte']);
+Route::get('panel/changer_password',[UserController::class, 'changer_password']);
 
 
 //Gestionnaire
@@ -32,6 +36,15 @@ Route::get('panel/aide',[UserController::class, 'aide']);
    Route::post('panel/gestionnaire/edit/{id}',[GestionnaireController::class, 'gestionnaire_update']);
    Route::get('panel/gestionnaire/delete/{id}',[GestionnaireController::class, 'gestionnaire_delete']);
 
+   //comptable
+   Route::get('panel/comptable',[ComptableController::class, 'comptable_list']);
+   Route::get('panel/comptable/create',[ComptableController::class, 'comptable_create']);
+   Route::post('panel/comptable/create',[ComptableController::class, 'comptable_insert']);
+   Route::get('panel/comptable/view/{id}',[ComptableController::class, 'comptable_view']);
+   Route::get('panel/comptable/edit/{id}',[ComptableController::class, 'comptable_edit']);
+   Route::post('panel/comptable/edit/{id}',[ComptableController::class, 'comptable_update']);
+   Route::get('panel/comptable/delete/{id}',[ComptableController::class, 'comptable_delete']);
+
    //fournisseur
    Route::get('panel/fournisseur',[FournisseurController::class, 'fournisseur_list']);
    Route::get('panel/fournisseur/create',[FournisseurController::class, 'fournisseur_create']);
@@ -39,6 +52,15 @@ Route::get('panel/aide',[UserController::class, 'aide']);
    Route::get('panel/fournisseur/edit/{id}',[FournisseurController::class, 'fournisseur_edit']);
    Route::post('panel/fournisseur/edit/{id}',[FournisseurController::class, 'fournisseur_update']);
    Route::get('panel/fournisseur/delete/{id}',[FournisseurController::class, 'fournisseur_delete']);
+
+   //conducteur
+   Route::get('panel/conducteur',[ConducteurController::class, 'conducteur_list']);
+   Route::get('panel/conducteur/create',[ConducteurController::class, 'conducteur_create']);
+   Route::post('panel/conducteur/create',[ConducteurController::class, 'conducteur_insert']);
+   Route::get('panel/conducteur/view/{id}',[ConducteurController::class, 'conducteur_view']);
+   Route::get('panel/conducteur/edit/{id}',[ConducteurController::class, 'conducteur_edit']);
+   Route::post('panel/conducteur/edit/{id}',[ConducteurController::class, 'conducteur_update']);
+   Route::get('panel/conducteur/delete/{id}',[ConducteurController::class, 'conducteur_delete']);
 
 //vehicule
    Route::get('panel/vehicule',[VehiculeController::class, 'vehicule_list']);

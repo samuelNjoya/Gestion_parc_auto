@@ -108,27 +108,6 @@
 
 @section('scripts')
   <script>
-               // Gestion de l’aperçu de la photo
-    document.addEventListener('DOMContentLoaded', () => {
-        const photoInput = document.getElementById('photo');
-        const photoPreview = document.getElementById('photoPreview');
-
-        if (photoInput && photoPreview) {
-            photoInput.addEventListener('change', () => {
-                const file = photoInput.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        photoPreview.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                   // photoPreview.src = 'https://via.placeholder.com/150'; // Placeholder si pas d’image
-                }
-            });
-        } else {
-            console.error('Photo input or preview element not found');
-        }
-    });
+    
   </script>
 @endsection

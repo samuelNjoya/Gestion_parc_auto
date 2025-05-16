@@ -20,13 +20,12 @@
                     <i class="fas fa-users me-2"></i> Utilisateur
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="/users"><i class="fas fa-user-shield me-2"></i> Admin</a></li>
-                    <li><a class="dropdown-item" href="/reports"><i class="fas fa-calculator me-2"></i> Comptable</a></li>
-                    <li><a class="dropdown-item" href="/users"><i class="fas fa-user-shield me-2"></i> Chauffeur</a></li>
+                    <li><a class="dropdown-item" href="{{url('panel/comptable')}}"><i class="fas fa-calculator me-2"></i> Comptable</a></li>
+                    <li><a class="dropdown-item" href="{{url('panel/conducteur')}}"><i class="fas fa-user-shield me-2"></i> Conducteur</a></li>
                     <li class="{{ (Request::segment(2) == 'gestionnaire') ? 'active' : '' }}">
-                        <a class="dropdown-item"  href="{{url('panel/gestionnaire')}}"><i class="fas fa-calculator me-2"></i> Gestionnaire</a>
+                        <a class="dropdown-item"  href="{{url('panel/gestionnaire')}}"><i class="fas fa-user-shield me-2"></i> Gestionnaire</a>
                     </li>
-                    <li><a class="dropdown-item" href="{{url('panel/fournisseur')}}"><i class="fas fa-calculator me-2"></i> Fournisseur</a>
+                    <li><a class="dropdown-item" href="{{url('panel/fournisseur')}}"><i class="fas fa-user-shield me-2"></i> Fournisseur</a>
                     </li>
 
                 </ul>
@@ -43,8 +42,10 @@
                     <i class="fas fa-wrench me-2"></i> Maintenance
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="/"><i class="fas fa-clipboard-list me-2"></i> Suivi
+                    <li><a class="dropdown-item" href="/"><i class="fas fa-clipboard-list me-2"></i> Etablir
                             Maintenance</a></li>
+                <li><a class="dropdown-item" href="/assignment-history"><i class="fas fa-history me-2"></i>
+                        Historique</a></li>
             </li>
         </ul>
         </li>
@@ -52,9 +53,6 @@
             <a class="nav-link" href="/fuel-consumption"><i class="fas fa-gas-pump me-2"></i>
                 Carburant</a>
 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {{ (Request::segment(2) == 'aide') ? 'active' : '' }}" href="{{url('panel/aide')}}"><i class="fas fa-question-circle me-2"></i> Aide</a>
         </li>
 
 
@@ -74,7 +72,13 @@
         <!-- Fin du dropdown Attribution -->
 
         <li class="nav-item">
-            <a class="nav-link" href="/profile"><i class="fas fa-user me-2"></i> Profil</a>
+            <a class="nav-link {{ (Request::segment(2) == 'mon_compte') ? 'active' : '' }}" href={{url('panel/mon_compte')}}><i class="fas fa-user me-2"></i> Profil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ (Request::segment(2) == 'changer_password') ? 'active' : '' }}" href="{{url('panel/changer_password')}}"><i class="fas fa-key me-2"></i> Changé mot de pass</a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link {{ (Request::segment(2) == 'aide') ? 'active' : '' }}" href="{{url('panel/aide')}}"><i class="fas fa-question-circle me-2"></i> Aide</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('logout')}}"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>

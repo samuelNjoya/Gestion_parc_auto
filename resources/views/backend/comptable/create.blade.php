@@ -4,7 +4,7 @@
  <div class="add-form-container fade-in">
             <!-- Formulaire d'ajout d'un conducteur -->
             <div class="card">
-                <h2 class="fw-bold">Ajouter un conducteur</h2>
+                <h2 class="fw-bold">Ajouter un comptable</h2>
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
                      <div class="form-group side-by-side">
@@ -12,13 +12,13 @@
                         <div class="form-group full-width">
                             <label for="last_name">Nom <span class="required">*</span></label>
                             <input type="text" id="last_name" name="nom"  aria-required="true"
-                                placeholder="Entrez le nom" value="{{ old('nom',$getRecords->nom) }}">
+                                placeholder="Entrez le nom" value="{{ old('nom') }}">
                         </div>
                             <!-- Champ Prénom (pleine largeur) -->
                         <div class="form-group full-width">
                             <label for="first_name">Prénom <span class="required">*</span></label>
                             <input type="text" id="first_name" name="prenom"  aria-required="true"
-                                placeholder="Entrez le prénom" value="{{ old('prenom',$getRecords->prenom) }}">
+                                placeholder="Entrez le prénom" value="{{ old('prenom') }}">
                         </div>
                     </div>
                     
@@ -29,12 +29,29 @@
                     <div class="form-group side-by-side">
                         <div>
                             <label for="birth_date">Date de naissance <span class="required">*</span></label>
-                            <input type="date" id="birth_date" name="date_naiss"  aria-required="true" value="{{ old('date_naiss',$getRecords->date_naiss) }}">
+                            <input type="date" id="birth_date" name="date_naiss"  aria-required="true" value="{{ old('date_naiss') }}">
                         </div>
                         <div>
                             <label for="license_number">mot de pass <span class="required">*</span></label>
                             <input type="password" id="license_number" name="motDePass" aria-required="true"
                                 placeholder="*******">
+                        </div>
+                    </div>
+
+                    <!-- Champs Type de permis et Date d'expiration (côte à côte) -->
+                    <div class="form-group side-by-side">
+                        <div>
+                            <label for="license_type">Departement <span class="required">*</span></label>
+                            <select id="license_type" name="departement" aria-required="true" value="{{ old('departement') }}">
+                                <option value="">Sélectionnez</option>
+                                <option value="departement1">departement1</option>
+                                <option value="departement2">departement2</option>
+                                <option value="departement3">departement3</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="license_expiry">Address <span class="required">*</span></label>
+                            <input type="text" id="license_expiry" name="address"  aria-required="true" value="{{ old('address') }}">
                         </div>
                     </div>
 
@@ -44,75 +61,41 @@
                         <div class="form-group full-width">
                             <label for="email">Email <span class="required">*</span></label>
                             <input type="email" id="email" name="email"  aria-required="true"
-                                placeholder="Entrez l'email" value="{{ old('email',$getRecords->email) }}">
+                                placeholder="Entrez l'email" value="{{ old('email') }}">
                                  <div style="color: red">{{ $errors->first('email') }}</div>
                         </div>
                         
                             <!-- Champ Téléphone (pleine largeur) -->
                         <div class="form-group full-width">
                             <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Entrez le numéro de téléphone" value="{{ old('phone',$getRecords->telephone) }}">
+                            <input type="tel" id="phone" name="phone" placeholder="Entrez le numéro de téléphone" value="{{ old('phone') }}">
                         </div>
                     </div>
 
 
-                     <div class="form-group side-by-side">
-                         <div>
-                            <label for="license_expiry">Numero permis <span class="required">*</span></label>
-                            <input type="text" id="license_expiry" name="numero_permis" placeholder="Entrer une numero de permis"  aria-required="true" value="{{ old('numero_permis',$getRecords->num_permis) }}">
-                        </div>
-                        <div>
-                            <label for="license_type">type_permis <span class="required">*</span></label>
-                            <select id="license_type" name="type_permis" aria-required="true" value="{{ old('type_permis') }}">
-                                <option value="">Sélectionnez</option>
-                                <option {{ ($getRecords->type_permis == "B") ? 'selected' : '' }} value="B">B</option>
-                                <option {{ ($getRecords->type_permis == "C") ? 'selected' : '' }} value="C">C</option>
-                                <option {{ ($getRecords->type_permis == "D") ? 'selected' : '' }} value="D">D</option>
-                                <option {{ ($getRecords->type_permis == "E") ? 'selected' : '' }} value="E">E</option>
-                            </select>
-                        </div>
-                       
-                    </div>
-
-                    <div class="form-group side-by-side">
-                        <div>
-                            <label for="birth_date">Date  expiration permis <span class="required">*</span></label>
-                            <input type="date" id="birth_date" name="date_expiration_permis"  aria-required="true" value="{{ old('date_expiration_permis',$getRecords->date_exp_permis) }}">
-                        </div>
-                        <div>
-                            <label for="license_expiry">Address <span class="required">*</span></label>
-                            <input type="text" id="license_expiry" name="address" placeholder="Entrer une address"  aria-required="true" value="{{ old('address',$getRecords->address) }}">
-                        </div>
-                    </div>
                    
-                  
-                <div class="form-group side-by-side">
-                        <div class="">
+                    <!-- Champ Photo avec aperçu -->
+                    <div class="form-group">
                         <label for="photo">Photo</label>
                         <input type="file" id="photo" name="profile_pic" accept="image/*" aria-describedby="photoHelp" value="{{ old('profile_pic') }}">
                         <!-- <small id="photoHelp" class="form-text">Choisissez une image (JPEG, PNG).</small> -->
                         <div class="photo-preview">
                             <img id="photoPreview"  alt="">
                         </div>
-                          @if (!empty($getRecords->getProfile()))
-                             <img style="border-radius: 50%" width="60px" height="60px"  src="{{ $getRecords->getProfile() }}" alt="">
-                          @endif 
                     </div>
 
-                    <div class="">
+                    <div class="form-group">
                             <label for="license_type">Statut <span class="required">*</span></label>
                             <select id="license_type" name="statut" required aria-required="true">
                                 <option value="">Sélectionnez</option>
-                                <option {{ ($getRecords->statut == 1) ? 'selected' : '' }} value="1">active</option>
-                               <option {{ ($getRecords->statut == 0) ? 'selected' : '' }} value="0">inactive</option>
+                                <option value="1">active</option>
+                                <option value="0">inactive</option>
                             </select>
                         </div>
-                </div>
-
 
                     <!-- Bouton de soumission -->
                     <div class="form-group">
-                        <button type="submit" class="btn"><i class="fas fa-save"></i> Mise a jour</button>
+                        <button type="submit" class="btn"><i class="fas fa-save"></i> Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -122,5 +105,28 @@
 @endsection                         
 
 @section('scripts')
+  <script>
+               // Gestion de l’aperçu de la photo
+    document.addEventListener('DOMContentLoaded', () => {
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
 
+        if (photoInput && photoPreview) {
+            photoInput.addEventListener('change', () => {
+                const file = photoInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        photoPreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                   // photoPreview.src = 'https://via.placeholder.com/150'; // Placeholder si pas d’image
+                }
+            });
+        } else {
+            console.error('Photo input or preview element not found');
+        }
+    });
+  </script>
 @endsection

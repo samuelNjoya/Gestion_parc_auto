@@ -86,6 +86,40 @@ class User extends Authenticatable
         return $return;
     }
 
+    //Comptable
+     static public function getComptable(){
+        $return = self::select('*');
+            if(!empty(Request::get('id'))){
+                 $return = $return->where('id', '=', Request::get('id'));
+            }
+            if(!empty(Request::get('nom'))){
+                 $return = $return->where('nom', 'like', '%' .Request::get('nom').'%');
+            }
+             if(!empty(Request::get('prenom'))){
+                 $return = $return->where('prenom', 'like', '%' .Request::get('prenom').'%');
+            }
+            if(!empty(Request::get('email'))){
+                    $return = $return->where('email', 'like', '%' .Request::get('email').'%');
+             }
+            if(!empty(Request::get('address'))){
+             $return = $return->where('address', 'like', '%' .Request::get('address').'%');
+            } 
+            if(!empty(Request::get('statut'))){
+                $statut = Request::get('statut');
+                if ($statut == 100) {
+                    $statut = 0;
+                }
+                $return = $return->where('statut', '=', $statut);
+             }
+
+        $return = $return->where('role','=', 3)  
+                ->where('is_delete', '=', 0)//whereIn
+                ->orderBy('id', 'desc')
+                ->paginate(10);   
+        return $return;
+    }
+    
+
     //Fournisseur
       static public function getFournisseur(){
         $return = self::select('*');
@@ -119,6 +153,38 @@ class User extends Authenticatable
         return $return;
     }
     
+    //Fournisseur
+      static public function getConducteur(){
+        $return = self::select('*');
+            if(!empty(Request::get('id'))){
+                 $return = $return->where('id', '=', Request::get('id'));
+            }
+            if(!empty(Request::get('nom'))){
+                 $return = $return->where('nom', 'like', '%' .Request::get('nom').'%');
+            }
+             if(!empty(Request::get('prenom'))){
+                 $return = $return->where('prenom', 'like', '%' .Request::get('prenom').'%');
+            }
+            if(!empty(Request::get('email'))){
+                    $return = $return->where('email', 'like', '%' .Request::get('email').'%');
+             }
+            if(!empty(Request::get('address'))){
+             $return = $return->where('address', 'like', '%' .Request::get('address').'%');
+            } 
+            if(!empty(Request::get('statut'))){
+                $statut = Request::get('statut');
+                if ($statut == 100) {
+                    $statut = 0;
+                }
+                $return = $return->where('statut', '=', $statut);
+             }
+
+        $return = $return->where('role','=', 4)  
+                ->where('is_delete', '=', 0)//whereIn
+                ->orderBy('id', 'desc')
+                ->paginate(10);   
+        return $return;
+    }
 
      public function getCreatedBy(){
         return $this->belongsTo(User::class, 'created_by_id');

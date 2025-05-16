@@ -108,3 +108,8 @@
             grid-template-columns: 1fr;
         }
     }
+
+    .center_profile_change_password{
+        max-width: 800px;
+        margin: 0 auto;
+    }

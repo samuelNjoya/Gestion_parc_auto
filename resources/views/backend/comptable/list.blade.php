@@ -48,7 +48,7 @@
                                 <label class=""></label>
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary" >Filtrer</button>
-                                    <a class="btn btn-secondary" href="{{url('panel/conducteur')}}" > Réinitialiser</a>
+                                    <a class="btn btn-secondary" href="{{url('panel/comptable')}}" > Réinitialiser</a>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +59,8 @@
                 <div class="">
 
                     <div class="d-flex justify-content-between mb-1">
-                        <h3 class="">liste des conducteurs</h3>
-                        <a href="{{url('panel/conducteur/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter conducteur</a>
+                        <h3 class="">liste des comptables</h3>
+                        <a href="{{url('panel/comptable/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter comptable</a>
                     </div>
 
                       <div class="table-responsive">
@@ -104,9 +104,9 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/conducteur/view', $item->id) }}" class="btn btn-success btn-sm"><i class="fa-regular fa-eye"></i></a>
-                                                <a href="{{ url('panel/conducteur/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ url('panel/conducteur/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
+                                                <a href="{{ url('panel/comptable/view', $item->id) }}" class="btn btn-success btn-sm"><i class="fa-regular fa-eye"></i></a>
+                                                <a href="{{ url('panel/comptable/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ url('panel/comptable/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr> 
                                 @empty
