@@ -152,8 +152,18 @@ class User extends Authenticatable
                 ->paginate(10);   
         return $return;
     }
+
+     static public function getFournisseurActive(){ 
+        $return = self::select('*')
+                 ->where('statut', '=', 1)
+                 ->where('role', '=', 5)// 5 represente le fournisseur
+                 ->where('is_delete', '=', 0)// pour supprimer et conservé
+                ->orderBy('id', 'desc')
+                ->get();   
+        return $return;
+    }
     
-    //Fournisseur
+    //Conducteur
       static public function getConducteur(){
         $return = self::select('*');
             if(!empty(Request::get('id'))){

@@ -50,7 +50,7 @@
         </ul>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/fuel-consumption"><i class="fas fa-gas-pump me-2"></i>
+            <a class="nav-link {{ (Request::segment(2) == 'conso_carburant') ? 'active' : '' }}" href="{{url('panel/conso_carburant')}}"><i class="fas fa-gas-pump me-2"></i>
                 Carburant</a>
 
         </li>

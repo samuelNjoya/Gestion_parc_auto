@@ -2,7 +2,16 @@
 @section('content')
     <div class="container-fluid fade-in">
             <h1 class="mb-4">Tableau de Bord</h1>
-
+               <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3></h3>
+                        <canvas id="epiDistributionChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Coût (par mois)</h3>
+                        <canvas id="maintenanceAlertsChart"></canvas>
+                    </div>
+                </div>
             <!-- Carte de bienvenue -->
             <div class="card mb-4">
                 <div class="card-body">

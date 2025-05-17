@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\backend\CarburantController;
 use App\Http\Controllers\backend\ComptableController;
 use App\Http\Controllers\backend\ConducteurController;
 use App\Http\Controllers\backend\DashboardController;
@@ -70,3 +71,12 @@ Route::get('panel/changer_password',[UserController::class, 'changer_password'])
    Route::get('panel/vehicule/edit/{id}',[VehiculeController::class, 'vehicule_edit']);
    Route::post('panel/vehicule/edit/{id}',[VehiculeController::class, 'vehicule_update']);
    Route::get('panel/vehicule/delete/{id}',[VehiculeController::class, 'vehicule_delete']);
+
+   
+   //conso carburant
+   Route::get('panel/conso_carburant',[CarburantController::class, 'conso_carburant_list']);
+   Route::get('panel/conso_carburant/create',[CarburantController::class, 'conso_carburant_create']);
+   Route::post('panel/conso_carburant/create',[CarburantController::class, 'conso_carburant_insert']);
+   Route::get('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_edit']);
+   Route::post('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_update']);
+   Route::get('panel/conso_carburant/delete/{id}',[CarburantController::class, 'conso_carburant_delete']);

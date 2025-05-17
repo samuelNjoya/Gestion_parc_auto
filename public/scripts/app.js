@@ -163,3 +163,22 @@
                 console.error('One or more chart canvases not found');
             }
         });
+
+
+// Chart.js - Répartition des EPI
+const epiDistributionChart = new Chart(document.getElementById('epiDistributionChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['En service', 'En maintenance', 'Hors service'],
+        datasets: [{
+            data: [300, 450, 200],
+            backgroundColor: ['#1E3A8A', '#DC2626', '#4B5563']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'bottom' }
+        }
+    }
+});
