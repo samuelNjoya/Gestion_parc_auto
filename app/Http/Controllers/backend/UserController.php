@@ -37,16 +37,7 @@ class UserController extends Controller
         $user->profile_pic = $filename;
       
     }
-      // if(!empty($request->file('profile_pic'))){
-      //       $ext = $request->file('profile_pic')->getClientOriginalExtension();
-      //       $file = $request->file('profile_pic');
-      //       $randomStr = date('Ymdhis').Str::random(20);
-      //       $filename = strtolower($randomStr).'.'.$ext;
-      //       $file->move('upload/profile/', $filename);
-
-      //       $user->profile_pic = $filename;
-      //       $user->save();
-      // }
+    
 
     $user->save();
 

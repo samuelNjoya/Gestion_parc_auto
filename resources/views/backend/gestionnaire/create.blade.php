@@ -91,7 +91,7 @@
                                 <option value="1">active</option>
                                 <option value="0">inactive</option>
                             </select>
-                        </div>
+                    </div>
 
                     <!-- Bouton de soumission -->
                     <div class="form-group">

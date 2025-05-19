@@ -1,3 +1,22 @@
+@section('styles')
+    <style>
+   
+        .lien_pdf{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lien_pdf > i{
+            /* display: block;
+             width: 30px!important;
+             height: 30px!important; */
+             color: red;
+            
+          }
+     
+    </style>
+@endsection
+
 @extends('backend.layouts.app')
 @section('content')
  
@@ -39,8 +58,8 @@
                                 <label for="filter-status">Statut</label>
                                     <select id="filter-status" name="statut">
                                         <option value="">Select</option>
-                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactive</option>
+                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Valide</option>
+                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Expiré</option>
                                     </select>
                             </div>
                            
@@ -48,7 +67,7 @@
                                 <label class=""></label>
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary" >Filtrer</button>
-                                    <a class="btn btn-secondary" href="{{url('panel/conso_carburant')}}" > Réinitialiser</a>
+                                    <a class="btn btn-secondary" href="{{url('panel/documentsVehicule')}}" > Réinitialiser</a>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +78,8 @@
                 <div class="">
 
                     <div class="d-flex justify-content-between mb-1">
-                        <h3 class="">liste des conso_carburants</h3>
-                        <a href="{{url('panel/conso_carburant/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter conso_carburant</a>
+                        <h3 class="">liste des documents du vehicule</h3>
+                        <a href="{{url('panel/documentsVehicule/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter un document</a>
                     </div>
 
                       <div class="table-responsive">
@@ -69,15 +88,14 @@
                                     <tr>
                                   
                                         <th>#<button class="btn btn-link p-0" onclick="sortTable(0)"><i class="fas fa-sort"></i></button></th>
-                                        <th>immatriculation <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
+                                        <th>Immatriculation <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
                                         <th>Marque <button class="btn btn-link p-0" onclick="sortTable(2)"><i class="fas fa-sort"></i></button></th>
-                                        <th>date<button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
-                                         <th>quantité <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
-                                        <th>cout<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
-                                        <th>kilometrage_plein<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
-                                        <th>fournisseur</th>
+                                        <th>Type<button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
+                                        <th>date dernière MAJ <button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
+                                        <th>date expiration<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
+                                        <th>scan pdf<button class="btn btn-link p-0" onclick="sortTable(6)"><i class="fas fa-sort"></i></button></th>
+                                        <th>Statut</th>
                                         <th>Actions</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody id="TriTableBody">
@@ -86,14 +104,26 @@
                                             <td >{{$item->id}}</td>
                                             <td >{{$item->getVehicule->immatriculation}}</td>
                                             <td >{{$item->getVehicule->marque}}</td>
-                                            <td >{{ date('d-m-y', strtotime($item->date_conso)) }}</td>
-                                            <td >{{$item->quantite_conso}} l</td>
-                                            <td >{{$item->cout_conso}} fcfa</td>
-                                            <td >{{$item->kilometrage_plein}} km</td>
-                                            <td >{{$item->getFournisseur->nom}}</td>    
+                                            <td >{{$item->type}} </td>
+                                            <td >{{ date('d-m-y', strtotime($item->date_derniere_mise_ajour)) }}</td>
+                                            <td >{{ date('d-m-y', strtotime($item->date_expiration)) }}</td>
+                                            <td >
+                                                @if (!empty($item->getDocumentVehiculeScan()))
+                                                    {{-- <img style="border-radius: 50%" width="60px" height="60px"  src="{{ $item->getDocumentVehiculeScan() }}" alt=""> --}}
+                                                     {{-- <iframe src="{{ $item->getDocumentVehiculeScan() }}" width="60px" height="60px"></iframe> --}}
+                                                      <small><a class="lien_pdf display-6" href="{{ $item->getDocumentVehiculeScan() }}" target="_blank"><i class="fas fa-file-pdf"></i></a></small>
+                                                @endif
+                                            </td>
+                                              <td >
+                                                @if ($item->statut == 1)
+                                                    <span class="label label-success">Valide</span>
+                                                @else
+                                                    <span class="label label-danger">Expiré</span>
+                                                @endif
+                                            </td>
                                             <td>
-                                                <a href="{{ url('panel/conso_carburant/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ url('panel/conso_carburant/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
+                                                <a href="{{ url('panel/documentsVehicule/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ url('panel/documentsVehicule/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr> 
                                 @empty

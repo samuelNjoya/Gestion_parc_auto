@@ -28,12 +28,12 @@ class AuthController extends Controller
         // ]);
            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_delete' => 0, 'statut' => 1], true)){
 
-            //  if(Auth::user()->is_admin == 5)
+            //  if(Auth::user()->role == 3)
             //  {
-            //     return redirect('teacher/dashboard');
-            //  }else if(Auth::user()->is_admin == 6)
+            //     return redirect('comptable/dashboard');
+            //  }else if(Auth::user()->role == 4)
             //  {
-            //     return redirect('student/dashboard');
+            //     return redirect('conducteur/dashboard');
             //  }else
             //  {
             //     return redirect('panel/dashboard');

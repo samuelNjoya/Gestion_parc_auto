@@ -5,6 +5,7 @@ use App\Http\Controllers\backend\CarburantController;
 use App\Http\Controllers\backend\ComptableController;
 use App\Http\Controllers\backend\ConducteurController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\DocumentsVehiculeController;
 use App\Http\Controllers\backend\GestionnaireController;
 use App\Http\Controllers\backend\FournisseurController;
 use App\Http\Controllers\backend\UserController;
@@ -19,19 +20,31 @@ Route::get('/',[AuthController::class,'login']);
 Route::get('logout',[AuthController::class, 'logout']);
 Route::post('/',[AuthController::class, 'auth_login']);
 
-//Dashboard
-Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
-
-//Dashboard
-Route::get('panel/aide',[UserController::class, 'aide']);
-Route::get('panel/mon_compte',[UserController::class, 'mon_compte']);
-Route::post('panel/mon_compte',[UserController::class, 'update_account']);
-
-Route::get('panel/changer_password',[UserController::class, 'changer_password']);
-Route::post('panel/changer_password',[UserController::class, 'update_password']);
+// Route::middleware('admin')->get('/test-admin', function () {
+//     return 'Middleware admin fonctionne';
+// });
 
 
-//Gestionnaire
+
+Route::group(['middleware' => 'common'], function(){
+
+   //Dashboard
+   Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
+
+   Route::get('panel/aide',[UserController::class, 'aide']);
+   Route::get('panel/mon_compte',[UserController::class, 'mon_compte']);
+   Route::post('panel/mon_compte',[UserController::class, 'update_account']);
+
+   Route::get('panel/changer_password',[UserController::class, 'changer_password']);
+   Route::post('panel/changer_password',[UserController::class, 'update_password']);
+});
+
+// Route::group(['middleware' => 'admin'], function(){
+//     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
+// });
+    Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
+
+   //Gestionnaire
    Route::get('panel/gestionnaire',[GestionnaireController::class, 'gestionnaire_list']);
    Route::get('panel/gestionnaire/create',[GestionnaireController::class, 'gestionnaire_create']);
    Route::post('panel/gestionnaire/create',[GestionnaireController::class, 'gestionnaire_insert']);
@@ -39,7 +52,6 @@ Route::post('panel/changer_password',[UserController::class, 'update_password'])
    Route::get('panel/gestionnaire/edit/{id}',[GestionnaireController::class, 'gestionnaire_edit']);
    Route::post('panel/gestionnaire/edit/{id}',[GestionnaireController::class, 'gestionnaire_update']);
    Route::get('panel/gestionnaire/delete/{id}',[GestionnaireController::class, 'gestionnaire_delete']);
-
    //comptable
    Route::get('panel/comptable',[ComptableController::class, 'comptable_list']);
    Route::get('panel/comptable/create',[ComptableController::class, 'comptable_create']);
@@ -83,3 +95,24 @@ Route::post('panel/changer_password',[UserController::class, 'update_password'])
    Route::get('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_edit']);
    Route::post('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_update']);
    Route::get('panel/conso_carburant/delete/{id}',[CarburantController::class, 'conso_carburant_delete']);
+
+
+   //documentsVehicule
+   Route::get('panel/documentsVehicule',[DocumentsVehiculeController::class, 'documentsVehicule_list']);
+   Route::get('panel/documentsVehicule/create',[DocumentsVehiculeController::class, 'documentsVehicule_create']);
+   Route::post('panel/documentsVehicule/create',[DocumentsVehiculeController::class, 'documentsVehicule_insert']);
+   Route::get('panel/documentsVehicule/view/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_view']);
+   Route::get('panel/documentsVehicule/edit/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_edit']);
+   Route::post('panel/documentsVehicule/edit/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_update']);
+   Route::get('panel/documentsVehicule/delete/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_delete']);
+// Route::group(['middleware' => 'gestionnaire'], function(){
+//     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
+// });
+
+// Route::group(['middleware' => 'comptable'], function(){
+//     Route::get('comptable/dashboard',[DashboardController::class, 'dashboard']);
+// });
+
+// Route::group(['middleware' => 'conducteur'], function(){
+//     Route::get('conducteur/dashboard',[DashboardController::class, 'dashboard']);
+// });

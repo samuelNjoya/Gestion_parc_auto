@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
-class ConsoCarburantModel extends Model
+class DocumentVehiculeModel extends Model
 {
-    protected $table = 'conso_carburant';
+    protected $table = 'document_vehicule';
 
     static public function getSingle($id){
-        return ConsoCarburantModel::find($id); 
+        return DocumentVehiculeModel::find($id); 
     }
 
-
-       static public function getConsoCarburant(){
+   static public function getDocumentVehicule(){
         $return = self::select('*');
             if(!empty(Request::get('id'))){
                  $return = $return->where('id', '=', Request::get('id'));
@@ -31,13 +30,13 @@ class ConsoCarburantModel extends Model
             if(!empty(Request::get('kilometrage_plein'))){
              $return = $return->where('kilometrage_plein', 'like', '%' .Request::get('kilometrage_plein').'%');
             } 
-            // if(!empty(Request::get('statut'))){
-            //     $statut = Request::get('statut');
-            //     if ($statut == 100) {
-            //         $statut = 0;
-            //     }
-            //     $return = $return->where('statut', '=', $statut);
-            //  }
+            if(!empty(Request::get('statut'))){
+                $statut = Request::get('statut');
+                if ($statut == 100) {
+                    $statut = 0;
+                }
+                $return = $return->where('statut', '=', $statut);
+             }
 
      $return = $return->where('is_delete', '=', 0)//whereIn
                 ->orderBy('id', 'desc')
@@ -45,17 +44,20 @@ class ConsoCarburantModel extends Model
         return $return;
     }
 
+ 
 
-    //Pour dire que plusieurs vehicules peuvent être affecter a une consommation carburant un vehicule consomme plusieurs fois
+         // pour ajouter le scan du document pdf a la liste
+    public function getDocumentVehiculeScan(){
+        if(!empty($this->pdf_scan) && file_exists('upload/doc_vehicule/' .$this->pdf_scan)){
+           return url('upload/doc_vehicule/' .$this->pdf_scan);
+        }else{
+            return "";
+        }
+    }
+
+      //Pour dire que  un vehicule possede plusieurs document
     public function getVehicule(){
         return $this->belongsTo(VehiculeModel::class, 'vehicule_id');
     }
 
-
-    public function getFournisseur(){
-    return $this->belongsTo(User::class, 'fournisseur_id')
-                ->where('role', 5);
-}
-
-       
 }

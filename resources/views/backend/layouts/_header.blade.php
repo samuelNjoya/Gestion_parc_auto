@@ -12,8 +12,8 @@
                 <img src="{{ Auth::user()->getProfileLive() }}" alt="{{ Auth::user()->name }}" alt="Photo de profil" class="profile-pic" id="profileDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item" href="/profile"><i class="fas fa-user me-2"></i> Voir Profil</a></li>
-                    <li><a class="dropdown-item" href="/edit-profile"><i class="fas fa-edit me-2"></i> Modifier
+                    <li><a class="dropdown-item" href="{{url('panel/mon_compte')}}"><i class="fas fa-user me-2"></i> Voir Profil</a></li>
+                    <li><a class="dropdown-item" href="{{url('panel/mon_compte')}}"><i class="fas fa-edit me-2"></i> Modifier
                             Profil</a></li>
                     <li><a class="dropdown-item" href="{{url('logout')}}"><i class="fas fa-sign-out-alt me-2"></i> Déconnexion</a>
                     </li>

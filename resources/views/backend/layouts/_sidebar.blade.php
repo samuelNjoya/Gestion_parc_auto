@@ -63,7 +63,9 @@
                 <i class="fas fa-user-check me-2"></i> Attribution
             </a>
             <ul class="dropdown-menu" aria-labelledby="assignmentDropdown">
-                <li><a class="dropdown-item" href="/assign-vehicle"><i class="fas fa-car me-2"></i> Attribuer</a>
+                <li><a class="dropdown-item" href="/assign-vehicle"><i class="fas fa-car me-2"></i> Attribuer voiture</a>
+                </li>
+                <li><a class="dropdown-item" href="{{url('panel/documentsVehicule')}}"><i class="fas fa-clipboard-list me-2"></i> Attribuer Document</a>
                 </li>
                 <li><a class="dropdown-item" href="/assignment-history"><i class="fas fa-history me-2"></i>
                         Historique</a></li>
