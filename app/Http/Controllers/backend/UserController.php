@@ -21,12 +21,11 @@ class UserController extends Controller
    public function update_account(Request $request){
 
        $user = User::getSingle(Auth::user()->id);
-       $user->name = trim($request->name);
+       $user->nom = trim($request->nom);
+       $user->address = trim($request->address);
+       $user->email = trim($request->email);
+       $user->telephone = trim($request->phone);
        
-       if(Auth::user()->is_admin != 3)
-       {
-        $user->last_name = trim($request->last_name);
-       }
 
        if(!empty($request->file('profile_pic'))){
         $ext = $request->file('profile_pic')->getClientOriginalExtension();
@@ -38,6 +37,16 @@ class UserController extends Controller
         $user->profile_pic = $filename;
       
     }
+      // if(!empty($request->file('profile_pic'))){
+      //       $ext = $request->file('profile_pic')->getClientOriginalExtension();
+      //       $file = $request->file('profile_pic');
+      //       $randomStr = date('Ymdhis').Str::random(20);
+      //       $filename = strtolower($randomStr).'.'.$ext;
+      //       $file->move('upload/profile/', $filename);
+
+      //       $user->profile_pic = $filename;
+      //       $user->save();
+      // }
 
     $user->save();
 

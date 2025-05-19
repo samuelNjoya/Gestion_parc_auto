@@ -25,7 +25,10 @@ Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
 //Dashboard
 Route::get('panel/aide',[UserController::class, 'aide']);
 Route::get('panel/mon_compte',[UserController::class, 'mon_compte']);
+Route::post('panel/mon_compte',[UserController::class, 'update_account']);
+
 Route::get('panel/changer_password',[UserController::class, 'changer_password']);
+Route::post('panel/changer_password',[UserController::class, 'update_password']);
 
 
 //Gestionnaire

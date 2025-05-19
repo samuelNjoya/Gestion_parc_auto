@@ -86,7 +86,7 @@
                                             <td >{{$item->id}}</td>
                                             <td >{{$item->getVehicule->immatriculation}}</td>
                                             <td >{{$item->getVehicule->marque}}</td>
-                                            <td >{{ date('d-m-y H:i A', strtotime($item->date_conso)) }}</td>
+                                            <td >{{ date('d-m-y', strtotime($item->date_conso)) }}</td>
                                             <td >{{$item->quantite_conso}} l</td>
                                             <td >{{$item->cout_conso}} fcfa</td>
                                             <td >{{$item->kilometrage_plein}} km</td>
