@@ -196,6 +196,16 @@ class User extends Authenticatable
         return $return;
     }
 
+    static public function getConducteurActive(){ 
+        $return = self::select('*')
+                 ->where('statut', '=', 1)
+                 ->where('role', '=', 4)// 5 represente le conducteur
+                 ->where('is_delete', '=', 0)// pour supprimer et conservé
+                ->orderBy('id', 'desc')
+                ->get();   
+        return $return;
+    }
+
      public function getCreatedBy(){
         return $this->belongsTo(User::class, 'created_by_id');
     }

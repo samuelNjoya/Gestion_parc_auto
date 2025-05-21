@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\backend\AffecterVehiculeController;
 use App\Http\Controllers\backend\CarburantController;
 use App\Http\Controllers\backend\ComptableController;
 use App\Http\Controllers\backend\ConducteurController;
@@ -114,6 +115,15 @@ Route::group(['middleware' => 'common'], function(){
    Route::get('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_edit']);
    Route::post('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_update']);
    Route::get('panel/intervention_tech/delete/{id}',[InterventionTechController::class, 'intervention_tech_delete']);
+
+   //affecter_vehicule
+   Route::get('panel/affecter_vehicule',[AffecterVehiculeController::class, 'affecter_vehicule_list']);
+   Route::get('panel/affecter_vehicule/create',[AffecterVehiculeController::class, 'affecter_vehicule_create']);
+   Route::post('panel/affecter_vehicule/create',[AffecterVehiculeController::class, 'affecter_vehicule_insert']);
+   Route::get('panel/affecter_vehicule/edit/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_edit']);
+   Route::post('panel/affecter_vehicule/edit/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_update']);
+   Route::get('panel/affecter_vehicule/delete/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_delete']);
+
 
 // Route::group(['middleware' => 'gestionnaire'], function(){
 //     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);  

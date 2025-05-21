@@ -235,45 +235,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         updateFieldsVisibility(); // Affichage initial
     });
+
+    
 </script>
 
 
-{{-- typeInterventionSelect.addEventListener('change', () => {
-  const value = typeInterventionSelect.value;
 
-  // Masquer les deux blocs
-  entretienFields.classList.add('d-none');
-  maintenanceFields.classList.add('d-none');
-
-  // Vider et désactiver tous les champs spécifiques
-  // Champs Entretien
-  prochaineDateInput.value = '';
-  piecesConsommablesInput.value = '';
-  piecesConsommablesInput.disabled = true;
-
-  // Champs Maintenance
-  dureeImmobilisationInput.value = '';
-  dureeImmobilisationInput.disabled = true;
-  descriptionPanneInput.value = '';
-  descriptionPanneInput.disabled = true;
-  prioriteSelect.value = '';
-  prioriteSelect.disabled = true;
-
-  // Afficher et activer uniquement les champs du type choisi
-  if (value === 'entretien') {
-    entretienFields.classList.remove('d-none');
-    prochaineDateInput.disabled = false;
-    frequenceEntretienInput.disabled = false;
-    piecesConsommablesInput.disabled = false;
-  } else if (value === 'maintenance') {
-    maintenanceFields.classList.remove('d-none');
-    dureeImmobilisationInput.disabled = false;
-    descriptionPanneInput.disabled = false;
-    prioriteSelect.disabled = false;
-  }
-});  prochaineDateInput.disabled = true; // désactive pour ne pas envoyer
-  frequenceEntretienInput.value = '';
-  frequenceEntretienInput.disabled = true; --}} a géré plustard pour la modification
 
 
 @endsection
