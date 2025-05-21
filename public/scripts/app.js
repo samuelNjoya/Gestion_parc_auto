@@ -182,3 +182,21 @@ const epiDistributionChart = new Chart(document.getElementById('epiDistributionC
         }
     }
 });
+
+   // Validation personnalisée avec Bootstrap
+    (() => {
+      'use strict'
+      const form = document.getElementById('formulaire');
+
+      // Écouteur sur la soumission du formulaire
+      form.addEventListener('submit', event => {
+        // La méthode checkValidity() vérifie si tous les champs requis sont valides
+        if (!form.checkValidity()) {
+          // Si un champ requis est invalide, on empêche la soumission du formulaire
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        // Ajout de la classe Bootstrap 'was-validated' pour afficher les messages d'erreur
+        form.classList.add('was-validated')
+      }, false)
+    })()

@@ -36,7 +36,7 @@
             </li>
 
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="fas fa-wrench me-2"></i> Maintenance
@@ -45,13 +45,18 @@
                     <li><a class="dropdown-item" href="/"><i class="fas fa-clipboard-list me-2"></i> Etablir
                             Maintenance</a></li>
                 <li><a class="dropdown-item" href="/assignment-history"><i class="fas fa-history me-2"></i>
-                        Historique</a></li>
-            </li>
+                        Historique</a></li>  
+            </li> --}}
         </ul>
-        </li>
+        
         <li class="nav-item">
             <a class="nav-link {{ (Request::segment(2) == 'conso_carburant') ? 'active' : '' }}" href="{{url('panel/conso_carburant')}}"><i class="fas fa-gas-pump me-2"></i>
                 Carburant</a>
+
+        </li>
+         <li class="nav-item">
+            <a class="nav-link {{ (Request::segment(2) == 'intervention_tech') ? 'active' : '' }}" href="{{url('panel/intervention_tech')}}"><i class="fas fa-clipboard-list me-2"></i>
+                Maintenance/Entretien</a>
 
         </li>
 
