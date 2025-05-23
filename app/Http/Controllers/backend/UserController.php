@@ -77,4 +77,27 @@ class UserController extends Controller
       $data['meta_title'] = "Aide";
       return view('backend.aide',$data);
     }
+
+
+    //conducteur voir ses vehicules affecter
+   public function myVehicles()
+    {
+        // Récupérer l'utilisateur authentifié
+      //   $user = Auth::user();
+
+      //   // Vérifier que l'utilisateur est un conducteur
+      //   if ($user->role !==4 ) { // Remplace 'driver' par ta logique de rôle
+      //       abort(403, 'Accès réservé aux conducteurs.');
+      //   }
+
+      //   // Récupérer les véhicules assignés avec les détails
+      //   $vehicles = $user->vehicules()->get();
+      //   $user = Auth::user();
+      //   $vehicules = $user->vehicules()->paginate(10);
+      // //  $data['vehicules'] = User::vehicules($user);
+      // //  $data['vehicules'] = $user->vehicules()->paginate(10);
+
+
+      //   return view('backend.dashboard', ['vehicules' => $vehicules]);
+    }
 }

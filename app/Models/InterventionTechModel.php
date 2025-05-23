@@ -57,5 +57,21 @@ class InterventionTechModel extends Model
                 ->where('role', 5);
 }
 
+
+//Pharse de stat
+    static public function numberOfBoth()
+    {
+        return self::select('*')->where('is_delete','=',0)->count();
+    }
+
+    static public function numberOfMaintenance()
+    {
+        return self::select('*')->where('is_delete','=',0)->where('type','=','maintenance')->count();
+    }
+
+    static public function numberOfEntretien()
+    {
+        return self::select('*')->where('is_delete','=',0)->where('type','=','entretien')->count();
+    }
        
 }

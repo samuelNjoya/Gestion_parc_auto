@@ -57,6 +57,11 @@ class VehiculeModel extends Model
         return $return;
     }
 
+     static public function numberOfCar()
+    {
+        return self::select('*')->where('is_delete','=',0)->count();
+    }
+
          // pour ajouter la photo du vehicule a la liste
     public function getPhotoVoiture(){
         if(!empty($this->photo) && file_exists('upload/vehicule/' .$this->photo)){
@@ -65,4 +70,14 @@ class VehiculeModel extends Model
             return "";
         }
     }
+
+    //affecter vehicule
+    public function conducteurs()
+{
+    return $this->belongsToMany(User::class, 'affectation-vehecule','vehicule_id', 'conducteur_id')
+                ->using(AffecterVehiculeModel::class)
+                ->withPivot('date_affectation', 'statut')
+                ->withTimestamps();
+}
+
 }

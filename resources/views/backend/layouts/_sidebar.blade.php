@@ -14,6 +14,7 @@
 
             </li>
             <!-- Ajout du dropdown Utilisateur -->
+            @if (Auth::user()->role == 1)
             <li class="nav-item">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -30,11 +31,13 @@
 
                 </ul>
             </li>
-            <!-- Fin du dropdown Utilisateur -->
+            @endif
+
+            @if (Auth::user()->role == 1 || Auth::user()->role == 2)
             <li class="nav-item " >
                 <a class="nav-link {{ (Request::segment(2) == 'vehicule') ? 'active' : '' }}" href="{{url('panel/vehicule')}}"><i class="fas fa-car me-2"></i> Véhicules</a>
             </li>
-
+           
 
             {{-- <li class="nav-item">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
@@ -76,6 +79,7 @@
                         Historique</a></li>
             </ul>
         </li>
+        @endif
         <!-- Fin du dropdown Attribution -->
 
         <li class="nav-item">

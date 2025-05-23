@@ -4,8 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
@@ -228,5 +230,35 @@ class User extends Authenticatable
         }
     }
 
+        //compter le nombre de conducteur 
+   static public function nombreConducteur()
+   {
+     return self::where('role','=',4)->where('is_delete','=',0)->count();
+   }
+
+
+   //conducteur doit voir vehicule
+//    public function getVehicule()
+//     {
+//         return $this->belongsToMany(VehiculeModel::class, 'affecter_vehicules', 'user_id', 'vehicle_id')
+//                     ->withTimestamps();
+//     }
     
+// public function vehicules()
+// {
+//     return $this->belongsToMany(VehiculeModel::class, 'affectation-vehecule','vehicule_id', 'conducteur_id')
+//                 ->using(AffecterVehiculeModel::class)
+//                 ->withPivot('date_affectation', 'statut')
+//                 ->withTimestamps();
+// }
+
+ public function vehicules():BelongsToMany
+{
+    return $this->belongsToMany(VehiculeModel::class, 'affectation-vehecule', 'conducteur_id', 'vehicule_id')
+                ->withPivot('description', 'date_debut', 'date_fin', 'statut', 'is_delete', 'updated_at', 'created_at')
+                ->wherePivot('is_delete', 0) // si vous souhaitez filtrer les non-supprimés
+                ->wherePivot('statut', 1); // si vous souhaitez filtrer par statut
+}
+
+
 }
