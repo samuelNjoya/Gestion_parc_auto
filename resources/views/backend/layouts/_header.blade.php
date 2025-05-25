@@ -1,5 +1,5 @@
  <header class="header">
-        <h4 class="text-center mx-3 fw-bold" style="color: var(--primary-color);">Parc Automobile</h4>
+        <h4 class="text-center mx-3 fw-bold" style="color: var(--primary-color);">ParcAutoCelson</h4>
         <div class="d-flex align-items-center">
             <!-- Ajout du bouton de bascule clair/sombre -->
             <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">

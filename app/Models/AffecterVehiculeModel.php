@@ -136,4 +136,10 @@ class AffecterVehiculeModel extends Model
                 ->where('role', 4);
 }
 
+       //compter le nombre de conducteur 
+   static public function nombreAffectation()
+   {
+     return self::where('is_delete','=',0)->count();
+   }
+
 }

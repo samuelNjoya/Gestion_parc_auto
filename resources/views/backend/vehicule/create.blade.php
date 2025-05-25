@@ -12,14 +12,14 @@
                         <div class="form-group full-width">
                             <label for="last_name">immatriculation <span class="required">*</span></label>
                             <input type="text" id="last_name" name="immatriculation"  aria-required="true"
-                                placeholder="Entrez l'immatriculation" value="{{ old('immatriculation') }}">
+                                placeholder="Entrez l'immatriculation" value="{{ old('immatriculation') }}" required>
                                 <div style="color: red">{{ $errors->first('immatriculation') }}</div>
                         </div>
                            
                         <div class="form-group full-width">
                             <label for="first_name">marque <span class="required">*</span></label>
                             <input type="text" id="first_name" name="marque"  aria-required="true"
-                                placeholder="Entrez la marque" value="{{ old('marque') }}">
+                                placeholder="Entrez la marque" value="{{ old('marque') }}" required>
                         </div>
                     </div>
                     
@@ -31,11 +31,11 @@
                         <div>
                             <label for="license_number">modèle <span class="required">*</span></label>
                             <input type="text" id="license_number" name="modele" aria-required="true"
-                                placeholder="Entrez le modèle" value="{{ old('modele') }}">
+                                placeholder="Entrez le modèle" value="{{ old('modele') }}" required>
                         </div>
                         <div>
                             <label for="birth_date">Date d'achat <span class="required">*</span></label>
-                            <input type="date" id="birth_date" name="date_buy"  aria-required="true" value="{{ old('date_buy') }}">
+                            <input type="date" id="birth_date" name="date_buy"  aria-required="true" value="{{ old('date_buy') }}" required>
                         </div>
                         
                     </div>
@@ -44,7 +44,7 @@
                     <div class="form-group side-by-side">
                         <div>
                             <label for="license_type">Type caburant<span class="required">*</span></label>
-                            <select id="license_type" name="type_caburant" aria-required="true" value="{{ old('type_caburant') }}">
+                            <select id="license_type" name="type_caburant" aria-required="true" value="{{ old('type_caburant') }}" required>
                                 <option value="">Sélectionnez</option>
                                 <option value="essence">essence</option>
                                 <option value="diesel">diesel</option>
@@ -57,7 +57,7 @@
                      
                         <div>
                             <label for="license_expiry">kilometrage <span class="required">*</span></label>
-                            <input type="number" id="license_expiry" name="kilometrage"  aria-required="true" value="{{ old('kilometrage') }}">
+                            <input type="number" id="license_expiry" name="kilometrage"  aria-required="true" value="{{ old('kilometrage') }}" required>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                
                     <div class="form-group">
                             <label for="license_type">Statut <span class="required">*</span></label>
-                            <select id="license_type" name="statut" required aria-required="true">
+                            <select id="license_type" name="statut" required aria-required="true" required>
                                 <option value="">Sélectionnez</option>
                                 <option value="1">active</option>
                                 <option value="0">inactive</option>

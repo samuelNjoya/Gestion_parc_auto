@@ -1,6 +1,46 @@
 @extends('backend.layouts.app')
 @section('content')
 
+@if (Auth::user()->role == 1 || Auth::user()->role == 2)
+<div class="container fade-in">
+    <!-- Section de Statistiques -->
+    <div class="row g-4">
+        <!-- Carte : Nombre de Conducteurs -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="drivers-count">
+                <i class="fas fa-users stat-icon" aria-hidden="true"></i>
+                <h3 id="drivers-count" class="stat-title">Conducteurs</h3>
+                <p class="stat-value" data-count="{{$getNumberConducteur}}">{{$getNumberConducteur}}</p>
+            </div>
+        </div>
+        <!-- Carte : Nombre de Véhicules -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="vehicles-count">
+                <i class="fas fa-car stat-icon" ></i>
+                <h3 id="vehicles-count" class="stat-title">Véhicules</h3>
+                <p class="stat-value" data-count="{{$getNumberCar}}">{{$getNumberCar}}</p>
+            </div>
+        </div>
+        <!-- Carte : Nombre d’Interventions -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="interventions-count">
+                <i class="fas fa-tools stat-icon" aria-hidden="true"></i>
+                <h3 id="interventions-count" class="stat-title">Interventions</h3>
+                <p class="stat-value" data-count="{{$getNumberIntervention}}">{{$getNumberIntervention}}</p>
+                
+            </div>
+        </div>
+        <!-- Carte : Nombre d’Assignations -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="assignments-count">
+                <i class="fas fa-link stat-icon" aria-hidden="true"></i>
+                <h3 id="assignments-count" class="stat-title">Assignations</h3>
+                <p class="stat-value" data-count="{{$getNumberAffectation}}">{{$getNumberAffectation}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 
 @if (Auth::user()->role == 4)
 <div class="container">
@@ -47,7 +87,7 @@
 
 
     <div class="container-fluid fade-in">
-            <h1 class="mb-4">Tableau de Bord</h1>
+            {{-- <h1 class="mb-4">Tableau de Bord</h1> --}}
                <div class="charts-grid">
                     <div class="chart-container">
                         <h3></h3>
@@ -58,51 +98,12 @@
                         <canvas id="maintenanceAlertsChart"></canvas>
                     </div>
                 </div>
-            <!-- Carte de bienvenue -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Bienvenue, Jean Dupont</h5>
-                    <p class="card-text">Gérez votre parc automobile efficacement avec notre plateforme.</p>
-                </div>
-            </div>
-             <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Nombre de conducteur</h5>
-                    <p class="card-text">{{$getNumberConducteur}}</p>
-                </div>
-            </div>
+            
 
             <!-- Statistiques -->  
-      @if (Auth::user()->role == 1)
-            <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Véhicules</h5>
-                            <p class="card-text">Total : <strong>{{$getNumberCar}}</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Intervention technique</h5>
-                            <p class="card-text">Nombre : <strong>{{$getNumberIntervention}}</strong></p>
-                            <p class="card-text">Nombre Maintenance: <strong>{{$getNumberMaintenance}}</strong></p>
-                             <p class="card-text">Nombre Entretien: <strong>{{$getNumberEntretien}}</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Coût carburant</h5>
-                            <p class="card-text">Mois : <strong>€2,500</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
+     @if (Auth::user()->role == 1)
+   
+    @endif
 
             <!-- Graphiques -->
             <!-- Correction pour affichage des graphiques Chart.js -->
@@ -144,4 +145,119 @@
        
         </div>
 
+
+
+
+@endsection
+@section('scripts')
+
+<script>
+    // Animation des compteurs
+    document.addEventListener('DOMContentLoaded', () => {
+        const counters = document.querySelectorAll('.stat-value');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / 50; // Vitesse d’animation
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+    });
+</script>
+    
+@endsection
+
+@section('styles')
+
+<style>
+
+
+    /* Conteneur principal */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Carte de statistique */
+    .stat-card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        border: 1px solid var(--accent-color);
+    }
+
+    /* Icône */
+    .stat-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+    }
+
+    /* Titre */
+    .stat-title {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+
+    /* Valeur */
+    .stat-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--text-color);
+        margin: 0;
+    }
+
+    /* Animation Fade-in */
+    .fade-in {
+        animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+
+        .stat-card {
+            padding: 15px;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+        }
+    }
+</style>
+    
 @endsection

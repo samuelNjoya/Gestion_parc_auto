@@ -237,21 +237,7 @@ class User extends Authenticatable
    }
 
 
-   //conducteur doit voir vehicule
-//    public function getVehicule()
-//     {
-//         return $this->belongsToMany(VehiculeModel::class, 'affecter_vehicules', 'user_id', 'vehicle_id')
-//                     ->withTimestamps();
-//     }
-    
-// public function vehicules()
-// {
-//     return $this->belongsToMany(VehiculeModel::class, 'affectation-vehecule','vehicule_id', 'conducteur_id')
-//                 ->using(AffecterVehiculeModel::class)
-//                 ->withPivot('date_affectation', 'statut')
-//                 ->withTimestamps();
-// }
-
+ 
  public function vehicules():BelongsToMany
 {
     return $this->belongsToMany(VehiculeModel::class, 'affectation-vehecule', 'conducteur_id', 'vehicule_id')

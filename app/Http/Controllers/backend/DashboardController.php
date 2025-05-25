@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AffecterVehiculeModel;
 use App\Models\InterventionTechModel;
 use App\Models\User;
 use App\Models\VehiculeModel;
@@ -12,12 +13,12 @@ class DashboardController extends Controller
 {
    public function dashboard(){
       $data['meta_title'] = 'dashboard';//
-      $data['getNumberConducteur'] = User::nombreConducteur();//nb driver 
+      $data['getNumberConducteur'] = User::nombreConducteur();//nb driver  
       $data['getNumberIntervention'] = InterventionTechModel::numberOfBoth();
       $data['getNumberMaintenance'] = InterventionTechModel::numberOfMaintenance();
       $data['getNumberEntretien'] = InterventionTechModel::numberOfEntretien(); 
       $data['getNumberCar'] = VehiculeModel::numberOfCar(); 
-
+      $data['getNumberAffectation'] = AffecterVehiculeModel::nombreAffectation();
 
        $user = Auth::user();
       //   $vehicules = $user->vehicules()->paginate(10);
