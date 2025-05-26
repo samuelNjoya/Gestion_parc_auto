@@ -124,6 +124,9 @@ Route::group(['middleware' => 'common'], function(){
    Route::post('panel/affecter_vehicule/edit/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_update']);
    Route::get('panel/affecter_vehicule/delete/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_delete']);
 
+   //exportation 
+   Route::get('panel/conducteur/users_excel',[UserController::class, 'users_excel']);
+
 
 // Route::group(['middleware' => 'gestionnaire'], function(){
 //     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);  

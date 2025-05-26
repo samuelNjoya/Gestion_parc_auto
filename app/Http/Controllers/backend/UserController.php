@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -76,6 +78,10 @@ class UserController extends Controller
     public function aide(){
       $data['meta_title'] = "Aide";
       return view('backend.aide',$data);
+    }
+
+      public function users_excel(){
+        return Excel::download(new UsersExport, 'conducteur.xlsx');
     }
 
 

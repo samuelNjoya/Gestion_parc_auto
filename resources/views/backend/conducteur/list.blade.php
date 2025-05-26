@@ -39,8 +39,8 @@
                                 <label for="filter-status">Statut</label>
                                     <select id="filter-status" name="statut">
                                         <option value="">Select</option>
-                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactive</option>
+                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Actif</option>
+                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactif</option>
                                     </select>
                             </div>
                            
@@ -60,7 +60,10 @@
 
                     <div class="d-flex justify-content-between mb-1">
                         <h3 class="">liste des conducteurs</h3>
-                        <a href="{{url('panel/conducteur/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter conducteur</a>
+                       <div class="pull-right">
+                           <a href="{{url('panel/conducteur/users_excel')}}" class="btn btn-info "><i class="fas fa-print me-1"></i>Excel</a>
+                        <a href="{{url('panel/conducteur/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter conducteur</a>
+                       </div>
                     </div>
 
                       <div class="table-responsive">
@@ -97,9 +100,9 @@
                                             <td >{{$item->address}}</td>
                                             <td >
                                                 @if ($item->statut == 1)
-                                                    <span class="label label-success">Active</span>
+                                                    <span class="label label-success">Actif</span>
                                                 @else
-                                                    <span class="label label-danger">Inactive</span>
+                                                    <span class="label label-danger">Inactif</span>
                                                 @endif
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
