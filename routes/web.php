@@ -126,6 +126,7 @@ Route::group(['middleware' => 'common'], function(){
 
    //exportation 
    Route::get('panel/conducteur/users_excel',[UserController::class, 'users_excel']);
+   Route::get('panel/conducteur/users_pdf',[UserController::class, 'users_pdf']);
 
 
 // Route::group(['middleware' => 'gestionnaire'], function(){

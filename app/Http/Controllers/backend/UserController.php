@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -81,7 +82,22 @@ class UserController extends Controller
     }
 
       public function users_excel(){
-        return Excel::download(new UsersExport, 'conducteur.xlsx');
+        return Excel::download(new UsersExport, 'conducteurs.xlsx');
+    }
+
+     public function users_pdf(){
+        $users = User::getConducteur(); //Auth::user()->id, Auth::user()->is_admin
+
+        $data = [
+            'title'=>'Users pdf',
+            'date'=>date('d-m-y'),
+            'users'=>$users
+        ];
+
+       // $pdf = app('dompdf.wrapper'); // Crée une instance de PDF
+        $pdf = PDF::loadView('pdf/conducteur', $data);
+
+        return $pdf->download('conducteurs.pdf');
     }
 
 
