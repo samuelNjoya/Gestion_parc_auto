@@ -90,8 +90,8 @@
                             <label for="license_type">Statut <span class="required">*</span></label>
                             <select id="license_type" name="statut" required aria-required="true" required>
                                 <option value="">Sélectionnez</option>
-                                <option value="1">active</option>
-                                <option value="0">inactive</option>
+                                <option value="1">En service</option>
+                                <option value="0">inactif</option>
                             </select>
                         </div>
 

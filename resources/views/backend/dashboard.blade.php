@@ -86,64 +86,7 @@
 @endif
 
 
-    <div class="container-fluid fade-in">
-            {{-- <h1 class="mb-4">Tableau de Bord</h1> --}}
-               <div class="charts-grid">
-                    <div class="chart-container">
-                        <h3></h3>
-                        <canvas id="epiDistributionChart"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <h3>Coût (par mois)</h3>
-                        <canvas id="maintenanceAlertsChart"></canvas>
-                    </div>
-                </div>
-            
-
-            <!-- Statistiques -->  
-     @if (Auth::user()->role == 1)
-   
-    @endif
-
-            <!-- Graphiques -->
-            <!-- Correction pour affichage des graphiques Chart.js -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Coût Carburant par Mois</h5>
-                            <div class="chart-container">
-                                <canvas id="fuelCostChart"></canvas>
-                            </div>
-                            <figcaption class="text-center text-muted">Coût mensuel du carburant (€)</figcaption>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Types de Maintenance</h5>
-                            <div class="chart-container">
-                                <canvas id="maintenanceTypeChart"></canvas>
-                            </div>
-                            <figcaption class="text-center text-muted">Répartition des types de maintenance</figcaption>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Consommation Moyenne par Véhicule</h5>
-                            <div class="chart-container">
-                                <canvas id="consumptionChart"></canvas>
-                            </div>
-                            <figcaption class="text-center text-muted">Consommation moyenne (L/100 km)</figcaption>
-                        </div>
-                    </div>
-                </div>
-            </div>
-       
-        </div>
+    --}}
 
 
 

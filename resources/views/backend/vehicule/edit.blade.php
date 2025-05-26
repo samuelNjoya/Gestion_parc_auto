@@ -93,8 +93,8 @@
                             <label for="license_type">Statut <span class="required">*</span></label>
                             <select id="license_type" name="statut" required aria-required="true">
                                 <option value="">Sélectionnez</option>
-                                <option {{ ($getRecords->statut == 1) ? 'selected' : '' }} value="1">active</option>
-                               <option {{ ($getRecords->statut == 0) ? 'selected' : '' }} value="0">inactive</option>
+                                <option {{ ($getRecords->statut == 1) ? 'selected' : '' }} value="1">En service</option>
+                               <option {{ ($getRecords->statut == 0) ? 'selected' : '' }} value="0">inactif</option>
                             </select>
                         </div>
 

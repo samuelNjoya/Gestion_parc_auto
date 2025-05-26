@@ -4,7 +4,7 @@
  @include('_message')
     <!-- Formulaire de changement de mot de passe -->
         <div class="center_profile_change_password" >
-            <h2 data-i18n="change_password_title">Changer mon Mot de Passe</h2>
+            <h2 data-i18n="change_password_title" class="fw-bold">Changer mon Mot de Passe</h2>
             <form method="POST">
                 @csrf
                 <div class="form-group">

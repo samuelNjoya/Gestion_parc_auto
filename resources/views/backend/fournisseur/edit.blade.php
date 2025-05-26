@@ -4,7 +4,7 @@
  <div class="add-form-container fade-in">
             <!-- Formulaire d'ajout d'un conducteur -->
             <div class="card">
-                <h2>Editer un fournisseur</h2>
+                <h2 class="fw-bold">Editer un fournisseur</h2>
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
                      <div class="form-group side-by-side">
@@ -50,8 +50,8 @@
                     <div class="form-group">
                             <label for="license_type">Statut <span class="required">*</span></label>
                             <select id="license_type" name="statut" required aria-required="true">
-                               <option {{ ($getRecords->statut == 1) ? 'selected' : '' }} value="1">active</option>
-                               <option {{ ($getRecords->statut == 0) ? 'selected' : '' }} value="0">inactive</option>
+                               <option {{ ($getRecords->statut == 1) ? 'selected' : '' }} value="1">actif</option>
+                               <option {{ ($getRecords->statut == 0) ? 'selected' : '' }} value="0">inactif</option>
                             </select>
                         </div>
 

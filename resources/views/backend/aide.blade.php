@@ -64,12 +64,12 @@
             </div>
         </div>
 
-        <!-- Informations de contact -->
+        {{-- <!-- Informations de contact -->
         <div class="contact-info">
             <h2>Informations de Contact</h2>
             <p><i class="fas fa-envelope"></i> <a href="mailto:support@metalsecure.fr">support@metalsecure.fr</a></p>
             <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
-        </div>
+        </div> --}}
     </div>
 @endsection
 

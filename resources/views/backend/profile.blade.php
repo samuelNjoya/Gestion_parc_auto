@@ -4,7 +4,7 @@
   @include('_message')
     <!-- Formulaire de modification des infos -->
         <div class="center_profile_change_password" >
-            <h2 data-i18n="edit_info_title">Modifier mes Informations</h2>
+            <h2 data-i18n="edit_info_title" class="fw-bold">Modifier mes Informations</h2>
             <form method="POST" enctype="multipart/form-data" >
                 @csrf
                 <div class="form-group">
@@ -37,9 +37,9 @@
                     <button type="submit" class="btn btn-primary" data-i18n="save">
                         <i class="fas fa-save"></i> Sauvegarder
                     </button>
-                    <button type="button"  class="btn btn-secondary"   data-i18n="cancel">
+                    {{-- <button type="button"  class="btn btn-secondary"   data-i18n="cancel">
                         <i class="fas fa-times"></i> Annuler
-                    </button>
+                    </button> --}}
                 </div>
             </form>
         </div>
