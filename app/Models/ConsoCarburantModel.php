@@ -57,5 +57,11 @@ class ConsoCarburantModel extends Model
                 ->where('role', 5);
 }
 
+        static public function sumOfConsoCarburant()
+        {
+            return self::where('is_delete', '=', 0)->sum('cout_conso');
+        }
+
+
        
 }

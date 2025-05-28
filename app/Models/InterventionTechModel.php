@@ -73,5 +73,15 @@ class InterventionTechModel extends Model
     {
         return self::select('*')->where('is_delete','=',0)->where('type','=','entretien')->count();
     }
+
+      static public function sumOfMaintenance()
+    {
+        return self::select('*')->where('is_delete','=',0)->where('type','=','maintenance')->sum('cout');
+    }
+
+    static public function sumOfEntretien()
+    {
+        return self::select('*')->where('is_delete','=',0)->where('type','=','entretien')->sum('cout');
+    }
        
 }

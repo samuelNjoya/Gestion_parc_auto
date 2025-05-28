@@ -39,8 +39,8 @@
                                 <label for="filter-status">Statut</label>
                                     <select id="filter-status" name="statut">
                                         <option value="">Select</option>
-                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactive</option>
+                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Actif</option>
+                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactif</option>
                                     </select>
                             </div>
                            
@@ -60,7 +60,12 @@
 
                     <div class="d-flex justify-content-between mb-1">
                         <h3 class="">liste des Maintenance/Entretien</h3>
-                        <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter une Maintenance</a>
+                        {{-- <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i></a> --}}
+                        <div class="pull-right">
+                            <a href="{{url('panel/intervention_tech/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
+                            {{-- <a href="{{url('panel/intervention_tech/users_excel')}}" class="btn btn-info "><i class="fas fa-print me-1"></i>Excel</a> --}}
+                            <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter une Maintenance</a>
+                       </div>
                     </div>
 
                       <div class="table-responsive">

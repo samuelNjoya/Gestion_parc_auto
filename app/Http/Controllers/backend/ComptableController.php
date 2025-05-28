@@ -42,7 +42,7 @@ class ComptableController extends Controller
         $user->date_naiss = trim($request->date_naiss);
         //  $user->date_naiss = trim($request->date_naiss);
         $user->telephone = trim($request->phone);
-        $user->role = 2;
+        $user->role = 3;
          $user->statut = trim($request->statut);
         $user->created_by_id = Auth::user()->id;
         $user->save();
@@ -88,7 +88,7 @@ class ComptableController extends Controller
         $user->date_naiss = trim($request->date_naiss);
         //  $user->date_naiss = trim($request->date_naiss);
         $user->telephone = trim($request->phone);
-        $user->role = 2;
+        $user->role = 3;
         $user->statut = trim($request->statut);
         $user->save();
     

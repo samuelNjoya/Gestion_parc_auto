@@ -86,4 +86,6 @@ class InterventionTechController extends Controller
 
         return redirect('panel/intervention_tech')->with('error','Maintenance/entretient supprimer avec succes');
     }
+
+    
 }

@@ -75,13 +75,17 @@
                 </li>
                 <li><a class="dropdown-item" href="{{url('panel/documentsVehicule')}}"><i class="fas fa-clipboard-list me-2"></i> Attribuer Document</a>
                 </li>
-                <li><a class="dropdown-item" href="#"><i class="fas fa-history me-2"></i>
-                        Historique</a></li>
+                {{-- <li><a class="dropdown-item" href="#"><i class="fas fa-history me-2"></i>
+                        Historique</a></li> --}}
             </ul>
         </li>
         @endif
         <!-- Fin du dropdown Attribution -->
-
+        @if (Auth::user()->role == 1 || Auth::user()->role == 3)
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::segment(2) == 'historique_cout') ? 'active' : '' }}" href={{url('panel/historique_cout')}}><i class="fas fa-history me-2"></i> Historique des coûts</a>
+            </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link {{ (Request::segment(2) == 'mon_compte') ? 'active' : '' }}" href={{url('panel/mon_compte')}}><i class="fas fa-user me-2"></i> Profil</a>
         </li>

@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 @section('content')
 
-@if (Auth::user()->role == 1 || Auth::user()->role == 2)
+@if (Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
 <div class="container fade-in">
     <!-- Section de Statistiques -->
     <div class="row g-4">
@@ -10,7 +10,7 @@
             <div class="stat-card" role="region" aria-labelledby="drivers-count">
                 <i class="fas fa-users stat-icon" aria-hidden="true"></i>
                 <h3 id="drivers-count" class="stat-title">Conducteurs</h3>
-                <p class="stat-value" data-count="{{$getNumberConducteur}}">{{$getNumberConducteur}}</p>
+                <p class="stat-value" data-count="{{$getNumberConducteur}}">0</p>
             </div>
         </div>
         <!-- Carte : Nombre de Véhicules -->
@@ -18,7 +18,7 @@
             <div class="stat-card" role="region" aria-labelledby="vehicles-count">
                 <i class="fas fa-car stat-icon" ></i>
                 <h3 id="vehicles-count" class="stat-title">Véhicules</h3>
-                <p class="stat-value" data-count="{{$getNumberCar}}">{{$getNumberCar}}</p>
+                <p class="stat-value" data-count="{{$getNumberCar}}">0</p>
             </div>
         </div>
         <!-- Carte : Nombre d’Interventions -->
@@ -26,20 +26,47 @@
             <div class="stat-card" role="region" aria-labelledby="interventions-count">
                 <i class="fas fa-tools stat-icon" aria-hidden="true"></i>
                 <h3 id="interventions-count" class="stat-title">Interventions</h3>
-                <p class="stat-value" data-count="{{$getNumberIntervention}}">{{$getNumberIntervention}}</p>
+                <p class="stat-value" data-count="{{$getNumberIntervention}}">0</p>
                 
             </div>
         </div>
-        <!-- Carte : Nombre d’Assignations -->
+        <!-- Carte : Nombre d’Assignations  Gérez vos véhicules, conducteurs et interventions en toute simplicité.-->
         <div class="col-lg-3 col-md-6">
             <div class="stat-card" role="region" aria-labelledby="assignments-count">
                 <i class="fas fa-link stat-icon" aria-hidden="true"></i>
                 <h3 id="assignments-count" class="stat-title">Assignations</h3>
-                <p class="stat-value" data-count="{{$getNumberAffectation}}">{{$getNumberAffectation}}</p>
+                <p class="stat-value" data-count="{{$getNumberAffectation}}">0</p>
+            </div>
+        </div>
+
+         <!-- Carte : Nombre d’Assignations -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="assignments-count">
+                <i class="fas fa-link stat-icon" aria-hidden="true"></i>
+                <h3 id="assignments-count" class="stat-title">Coût total Entretien</h3>
+                <p class="stat-value" data-count="{{$getSumEntretien}}">0</p><span class="fw-bold ">FCFA</span>
+            </div>
+        </div>
+         <!-- Carte : Nombre d’Assignations -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="assignments-count">
+                <i class="fas fa-tools stat-icon" aria-hidden="true"></i>
+                <h3 id="assignments-count" class="stat-title">Coût total Maintenance</h3>
+                <p class="stat-value" data-count="{{$getSumMaintenance}}">0</p><span class="fw-bold ">FCFA</span>
+            </div>
+        </div>
+         <!-- Carte : Nombre d’Assignations -->
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card" role="region" aria-labelledby="assignments-count">
+               <i class="fas fa-gas-pump stat-icon"></i>
+                <h3 id="assignments-count" class="stat-title">Coût total Consommation du carburant</h3>
+                <p class="stat-value" data-count="{{$getSumConsoCarburant}} ">0</p><span class="fw-bold ">FCFA</span>
             </div>
         </div>
     </div>
 </div>
+
+
 @endif
 
 @if (Auth::user()->role == 4)
@@ -86,8 +113,6 @@
 @endif
 
 
-    --}}
-
 
 
 
@@ -113,6 +138,8 @@
             updateCount();
         });
     });
+
+
 </script>
     
 @endsection

@@ -39,8 +39,8 @@
                                 <label for="filter-status">Statut</label>
                                     <select id="filter-status" name="statut">
                                         <option value="">Select</option>
-                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactive</option>
+                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Actif</option>
+                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactif</option>
                                     </select>
                             </div>
                            
@@ -97,9 +97,9 @@
                                             <td >{{$item->address}}</td>
                                             <td >
                                                 @if ($item->statut == 1)
-                                                    <span class="label label-success">Active</span>
+                                                    <span class="label label-success">Actif</span>
                                                 @else
-                                                    <span class="label label-danger">Inactive</span>
+                                                    <span class="label label-danger">Inactif</span>
                                                 @endif
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>

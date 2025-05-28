@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Exports\VehiculeExport;
 use App\Http\Controllers\Controller;
+use App\Models\InterventionTechModel;
 use App\Models\VehiculeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class VehiculeController extends Controller
 {
@@ -103,5 +107,47 @@ class VehiculeController extends Controller
         $vehicule->save();
 
         return redirect('panel/vehicule')->with('error','vehicule supprimer avec succes');
+    }
+
+
+
+    /////********************************************* *//////
+    /////          siege des importation en pdf et excel  /////
+    /////********************************************* *//////
+
+    public function vehicule_excel(){
+        return Excel::download(new VehiculeExport, 'vehicule.xlsx');
+    }
+
+    //vehicule
+     public function vehicule_pdf(){
+        $users = VehiculeModel::getVehiculeActive(); //Auth::user()->id, Auth::user()->is_admin
+
+        $data = [
+            'title'=>'vehicule pdf',
+            'date'=>date('d-m-y'),
+            'users'=>$users
+        ];
+
+       // $pdf = app('dompdf.wrapper'); // Crée une instance de PDF
+        $pdf = PDF::loadView('pdf/vehicule', $data);
+
+        return $pdf->download('vehicule.pdf');
+    }
+
+     //intervention_technique
+     public function intervention_technique_pdf(){
+        $users = InterventionTechModel::getInterventionTech(); //Auth::user()->id, Auth::user()->is_admin
+
+        $data = [
+            'title'=>'intervention technique pdf',
+            'date'=>date('d-m-y'),
+            'users'=>$users
+        ];
+
+       // $pdf = app('dompdf.wrapper'); // Crée une instance de PDF
+        $pdf = PDF::loadView('pdf/intervention_technique', $data);
+
+        return $pdf->download('intervention_technique.pdf');
     }
 }

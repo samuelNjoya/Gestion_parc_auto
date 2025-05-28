@@ -97,7 +97,8 @@ Route::group(['middleware' => 'common'], function(){
    Route::get('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_edit']);
    Route::post('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_update']);
    Route::get('panel/conso_carburant/delete/{id}',[CarburantController::class, 'conso_carburant_delete']);
-
+   //historique cout 
+   Route::get('panel/historique_cout/{annee?}',[CarburantController::class, 'coutParMois']);
 
    //documentsVehicule
    Route::get('panel/documentsVehicule',[DocumentsVehiculeController::class, 'documentsVehicule_list']);
@@ -125,8 +126,18 @@ Route::group(['middleware' => 'common'], function(){
    Route::get('panel/affecter_vehicule/delete/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_delete']);
 
    //exportation 
+
+   //conducteur
    Route::get('panel/conducteur/users_excel',[UserController::class, 'users_excel']);
    Route::get('panel/conducteur/users_pdf',[UserController::class, 'users_pdf']);
+
+   //vehicule
+   Route::get('panel/vehicule/users_excel',[VehiculeController::class, 'vehicule_excel']);
+   Route::get('panel/vehicule/users_pdf',[VehiculeController::class, 'vehicule_pdf']);
+
+   //intervention_tech
+   Route::get('panel/intervention_tech/users_excel',[VehiculeController::class, 'intervention_technique_excel']);
+   Route::get('panel/intervention_tech/users_pdf',[VehiculeController::class, 'intervention_technique_pdf']);
 
 
 // Route::group(['middleware' => 'gestionnaire'], function(){

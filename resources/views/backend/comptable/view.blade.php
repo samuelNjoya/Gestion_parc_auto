@@ -51,7 +51,7 @@
                             <dd>{{ ($getRecords->role == 3) ? 'comptable' : '/' }}</dd>
                         </div>
                           <p>
-                            statut  : {{ ($getRecords->statut == 1) ? 'Active' : 'inative' }}
+                            statut  : {{ ($getRecords->statut == 1) ? 'Actif' : 'inatif' }}
                           </p>
                     </dl>
                    
