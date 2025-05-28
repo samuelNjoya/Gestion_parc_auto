@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Exports\VehiculeExport;
 use App\Http\Controllers\Controller;
+use App\Models\ConsoCarburantModel;
 use App\Models\InterventionTechModel;
 use App\Models\VehiculeModel;
 use Illuminate\Http\Request;
@@ -149,5 +150,21 @@ class VehiculeController extends Controller
         $pdf = PDF::loadView('pdf/intervention_technique', $data);
 
         return $pdf->download('intervention_technique.pdf');
+    }
+
+    // Carburant conso_carburant
+    public function conso_carburant_pdf(){
+        $users = ConsoCarburantModel::getConsoCarburant(); //Auth::user()->id, Auth::user()->is_admin
+
+        $data = [
+            'title'=>'consommation en carburant pdf',
+            'date'=>date('d-m-y'),
+            'users'=>$users
+        ];
+
+       // $pdf = app('dompdf.wrapper'); // Crée une instance de PDF
+        $pdf = PDF::loadView('pdf/conso_carburant', $data);
+
+        return $pdf->download('conso_carburant.pdf');
     }
 }

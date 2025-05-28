@@ -97,7 +97,7 @@ Route::group(['middleware' => 'common'], function(){
    Route::get('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_edit']);
    Route::post('panel/conso_carburant/edit/{id}',[CarburantController::class, 'conso_carburant_update']);
    Route::get('panel/conso_carburant/delete/{id}',[CarburantController::class, 'conso_carburant_delete']);
-   //historique cout 
+   //historique cout dans le diagramme en bande
    Route::get('panel/historique_cout/{annee?}',[CarburantController::class, 'coutParMois']);
 
    //documentsVehicule
@@ -139,6 +139,9 @@ Route::group(['middleware' => 'common'], function(){
    Route::get('panel/intervention_tech/users_excel',[VehiculeController::class, 'intervention_technique_excel']);
    Route::get('panel/intervention_tech/users_pdf',[VehiculeController::class, 'intervention_technique_pdf']);
 
+   //consommation carburant
+   Route::get('panel/conso_carburant/users_excel',[VehiculeController::class, 'conso_carburant_excel']);
+   Route::get('panel/conso_carburant/users_pdf',[VehiculeController::class, 'conso_carburant_pdf']);
 
 // Route::group(['middleware' => 'gestionnaire'], function(){
 //     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);  

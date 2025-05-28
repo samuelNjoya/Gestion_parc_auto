@@ -30,19 +30,19 @@
                                 <input type="text"  value="{{ Request::get('date') }}" placeholder="date" name="date">
                             </div>
 
-                            {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Address</label>
-                                <input type="text"  value="{{ Request::get('address') }}" placeholder="address" name="address">
-                            </div> --}}
+                            <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                                <label for="filter-vehicle">Prestataire</label>
+                                <input type="text"  value="{{ Request::get('fournisseur_id') }}" placeholder="address" name="fournisseur_id">
+                            </div>
 
-                            <div class="form-group col-sm-4 col-md-3 col-lg-2">
-                                <label for="filter-status">Station service</label>
+                            {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2">
+                                <label for="filter-status">Station</label>
                                     <select id="filter-status" name="statut">
                                         <option value="">Select</option>
                                         <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Actif</option>
                                         <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Inactif</option>
                                     </select>
-                            </div>
+                            </div> --}}
                            
                             <div class="form-group col-sm-4 col-md-3 col-lg-2">
                                 <label class=""></label>
@@ -60,8 +60,14 @@
 
                     <div class="d-flex justify-content-between mb-1">
                         <h3 class="">liste des conso_carburants</h3>
-                        <a href="{{url('panel/conso_carburant/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i>Ajouter conso_carburant</a>
+                        
+                        <div class="pull-right">
+                            <a href="{{url('panel/conso_carburant/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
+                            {{-- <a href="{{url('panel/conso_carburant/users_excel')}}" class="btn btn-info "><i class="fas fa-print me-1"></i>Excel</a> --}}
+                           <a href="{{url('panel/conso_carburant/create')}}" class="btn btn-primary"><i class="fas fa-plus me-1"></i>Ajouter conso_carburant</a>
+                       </div>
                     </div>
+
 
                       <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -75,7 +81,7 @@
                                          <th>quantité <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
                                         <th>cout<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
                                         <th>kilometrage_plein<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
-                                        <th>fournisseur</th>
+                                        <th>Prestataire</th>
                                         <th>Actions</th>
                                         
                                     </tr>
