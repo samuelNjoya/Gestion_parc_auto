@@ -15,15 +15,14 @@
             @endforeach
         </select>
        </div>
-       <div class="col-md-2 mt-4">
-          {{-- <label for="annee">Choisir une année : </label> --}}
-          <button class="btn btn-primary pull-right" onclick="exportPDF()"> Exporter en PDF</button>
-       </div>
+      
        </div>
     </form>
-    
+      
+    <div class="col-md-2 my-3 flex-end" style="position: absolute; top:120px; right:90px;">
+          <button class="btn btn-primary pull-right" onclick="exportPDF()"> Exporter en PDF</button>
+    </div>
        
-   
 
    </div>
 
@@ -73,7 +72,7 @@
             }
         });
 
-      //  pour telecharger en pdf
+       //pour telecharger en pdf
     // async function exportPDF() {
     //     const canvas = document.getElementById('carburantChart');
     //     const canvasImage = await html2canvas(canvas, { scale: 2 });
