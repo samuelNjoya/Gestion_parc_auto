@@ -80,66 +80,8 @@ class CarburantController extends Controller
     }
 
 
-    // pour le graph
-//     public function index()
-// {
-//     $data = ConsoCarburantModel::select(
-//             DB::raw("DATE_FORMAT(date_conso, '%Y-%m') as mois"),
-//             DB::raw('SUM(cout) as total_cout')
-//         )
-//         ->where('is_delete', 0)  // si tu utilises ce champ pour filtrer
-//         ->groupBy('mois')
-//         ->orderBy('mois')
-//         ->get();
 
-//     $labels = $data->pluck('mois');
-//     $couts = $data->pluck('total_cout');
 
-//     return view('backend.dashboard', compact('labels', 'couts'));
-// }
-
-// public function showDashboard()
-// {
-//     // Récupérer les données de maintenance (exemple)
-//     $maintenanceData = ConsoCarburantModel::select(
-//             DB::raw("DATE_FORMAT(date_cons, '%b') as mois"), // mois abrégé (Jan, Fév...)
-//             DB::raw('SUM(cout_cons) as cout') // cout total par mois
-//         )
-//         ->groupBy('mois')
-//         ->orderBy(DB::raw("MONTH(date_cons)")) // important pour l'ordre des mois
-//         ->pluck('cout', 'mois')  // récupère un tableau associatif [mois => cout]
-//         ->toArray();
-
-//     // Formater les données pour Chart.js
-//     $labels = array_keys($maintenanceData); // mois
-//     $couts = array_values($maintenanceData); // couts
-
-//     // Préparer le tableau final à envoyer à la vue
-//     $data = [
-//         'labels' => $labels,
-//         'couts' => $couts
-//     ];
-
-//     return view('backend.dashboard', compact('data')); // Passer $data à la vue
-// }
-
-// public function coutParMois()
-// {
-//     $data = DB::table('conso_carburant')
-//         ->select(
-//             DB::raw("DATE_FORMAT(date_conso, '%b %Y') as mois"),
-//             DB::raw("SUM(cout_conso) as total_cout")
-//         )
-//         ->groupBy('mois')
-//         ->orderBy('mois')
-//         ->get();
-
-//     $labels = $data->pluck('mois');
-//     $values = $data->pluck('total_cout');
-
-//     return view('backend.historiqueCout', compact('labels', 'values'));
-
-// }
 
 public function coutParMois(Request $request, $annee = null)
 {

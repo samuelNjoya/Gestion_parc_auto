@@ -95,32 +95,36 @@ class AffecterVehiculeModel extends Model
     }
 
       static public function getAffectationVehicule(){
-        $return = self::select('*');
+        // $return = self::select('*');
+        $return = self::select('affectation-vehecule.*', 'vehicule.immatriculation', 'vehicule.marque')
+           ->join('vehicule', 'vehicule.id', '=', 'affectation-vehecule.vehicule_id')
+           ->join('users', 'users.id', '=', 'affectation-vehecule.conducteur_id');
+
             if(!empty(Request::get('id'))){
                  $return = $return->where('id', '=', Request::get('id'));
             }
-            if(!empty(Request::get('date_conso'))){
-                 $return = $return->where('date_conso', 'like', '%' .Request::get('date_conso').'%');
+            if(!empty(Request::get('nom'))){
+                 $return = $return->where('nom', 'like', '%' .Request::get('nom').'%');
             }
-             if(!empty(Request::get('quantite_conso'))){
-                 $return = $return->where('quantite_conso', 'like', '%' .Request::get('quantite_conso').'%');
+             if(!empty(Request::get('prenom'))){
+                 $return = $return->where('prenom', 'like', '%' .Request::get('prenom').'%');
             }
-            if(!empty(Request::get('cout_conso'))){
-                    $return = $return->where('cout_conso', 'like', '%' .Request::get('cout_conso').'%');
+            if(!empty(Request::get('immatriculation'))){
+                    $return = $return->where('immatriculation', 'like', '%' .Request::get('immatriculation').'%');
              }
-            if(!empty(Request::get('kilometrage_plein'))){
-             $return = $return->where('kilometrage_plein', 'like', '%' .Request::get('kilometrage_plein').'%');
-            } 
+            // if(!empty(Request::get('kilometrage_plein'))){
+            //  $return = $return->where('kilometrage_plein', 'like', '%' .Request::get('kilometrage_plein').'%');
+            // } 
             if(!empty(Request::get('statut'))){
                 $statut = Request::get('statut');
                 if ($statut == 100) {
                     $statut = 0;
                 }
-                $return = $return->where('statut', '=', $statut);
+                $return = $return->where('affectation-vehecule.statut', '=', $statut);
              }
 
-     $return = $return->where('is_delete', '=', 0)//whereIn
-                ->orderBy('id', 'desc')
+     $return = $return->where('affectation-vehecule.is_delete', '=', 0)//whereIn
+                ->orderBy('affectation-vehecule.id', 'desc')
                 ->paginate(10);   
         return $return;
     }

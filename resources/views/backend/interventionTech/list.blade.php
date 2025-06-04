@@ -16,23 +16,28 @@
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Nom</label>
-                                <input type="text"  value="{{ Request::get('nom') }}" placeholder="nom" name="nom">
+                                <label for="filter-vehicle">immatriculation</label>
+                                <input type="text"  value="{{ Request::get('immatriculation') }}" placeholder="immatriculation" name="immatriculation">
                             </div>
 
                              <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Prenom</label>
-                                <input type="text"  value="{{ Request::get('prenom') }}" placeholder="prenom" name="prenom">
+                                <label for="filter-vehicle">type</label>
+                                <input type="text"  value="{{ Request::get('type') }}" placeholder="type" name="type">
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Email</label>
-                                <input type="text"  value="{{ Request::get('email') }}" placeholder="email" name="email">
+                                <label for="filter-vehicle">titre</label>
+                                <input type="text"  value="{{ Request::get('titre') }}" placeholder="titre" name="titre">
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Address</label>
-                                <input type="text"  value="{{ Request::get('address') }}" placeholder="address" name="address">
+                                <label for="filter-vehicle">date</label>
+                                <input type="text"  value="{{ Request::get('date') }}" placeholder="date" name="date">
+                            </div>
+
+                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                                <label for="filter-vehicle">cout</label>
+                                <input type="text"  value="{{ Request::get('cout') }}" placeholder="cout" name="cout">
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2">

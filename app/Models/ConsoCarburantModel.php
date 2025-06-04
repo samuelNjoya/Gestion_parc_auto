@@ -15,7 +15,11 @@ class ConsoCarburantModel extends Model
 
 
        static public function getConsoCarburant(){
-        $return = self::select('*');
+        // $return = self::select('*');
+
+         $return = self::select('conso_carburant.*', 'vehicule.immatriculation', 'vehicule.marque')
+           ->join('vehicule', 'vehicule.id', '=', 'conso_carburant.vehicule_id');
+
             if(!empty(Request::get('id'))){
                  $return = $return->where('id', '=', Request::get('id'));
             }
@@ -28,19 +32,25 @@ class ConsoCarburantModel extends Model
             if(!empty(Request::get('cout_conso'))){
                     $return = $return->where('cout_conso', 'like', '%' .Request::get('cout_conso').'%');
              }
-            if(!empty(Request::get('kilometrage_plein'))){
-             $return = $return->where('kilometrage_plein', 'like', '%' .Request::get('kilometrage_plein').'%');
+            if(!empty(Request::get('immatriculation'))){
+             $return = $return->where('vehicule.immatriculation', 'like', '%' .Request::get('immatriculation').'%');
             } 
+             if(!empty(Request::get('marque'))){
+             $return = $return->where('vehicule.marque', 'like', '%' .Request::get('marque').'%');
+            } 
+            //  if(!empty(Request::get('kilometrage_plein'))){
+            //  $return = $return->where('kilometrage_plein', 'like', '%' .Request::get('kilometrage_plein').'%');
+            // } 
             // if(!empty(Request::get('statut'))){
             //     $statut = Request::get('statut');
             //     if ($statut == 100) {
             //         $statut = 0;
             //     }
-            //     $return = $return->where('statut', '=', $statut);
+            //     $return = $return->where('statut', '=', $statut); vehicule.
             //  }
 
-     $return = $return->where('is_delete', '=', 0)//whereIn
-                ->orderBy('id', 'desc')
+     $return = $return->where('conso_carburant.is_delete', '=', 0)//whereIn
+                ->orderBy('conso_carburant.id', 'desc')
                 ->paginate(10);   
         return $return;
     }
