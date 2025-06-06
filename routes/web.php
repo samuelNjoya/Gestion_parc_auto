@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\DocumentsVehiculeController;
 use App\Http\Controllers\backend\GestionnaireController;
 use App\Http\Controllers\backend\FournisseurController;
 use App\Http\Controllers\backend\InterventionTechController;
+use App\Http\Controllers\backend\PieceController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\VehiculeController;
 use Illuminate\Support\Facades\Route;
@@ -109,13 +110,17 @@ Route::group(['middleware' => 'common'], function(){
    Route::post('panel/documentsVehicule/edit/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_update']);
    Route::get('panel/documentsVehicule/delete/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_delete']);
 
-     //intervention_tech
+   //intervention_tech
    Route::get('panel/intervention_tech',[InterventionTechController::class, 'intervention_tech_list']);
    Route::get('panel/intervention_tech/create',[InterventionTechController::class, 'intervention_tech_create']);
    Route::post('panel/intervention_tech/create',[InterventionTechController::class, 'intervention_tech_insert']);
    Route::get('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_edit']);
    Route::post('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_update']);
    Route::get('panel/intervention_tech/delete/{id}',[InterventionTechController::class, 'intervention_tech_delete']);
+
+   //Pièce
+   Route::get('panel/piece',[PieceController::class, 'piece_list']);
+   Route::post('panel/pieces/create', [PieceController::class, 'piece_insert'])->name('pieces.insert');
 
    //affecter_vehicule
    Route::get('panel/affecter_vehicule',[AffecterVehiculeController::class, 'affecter_vehicule_list']);

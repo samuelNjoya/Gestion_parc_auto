@@ -7,8 +7,6 @@ use App\Models\InterventionTechModel;
 use App\Models\User;
 use App\Models\VehiculeModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class InterventionTechController extends Controller
 {

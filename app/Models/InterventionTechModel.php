@@ -61,7 +61,11 @@ class InterventionTechModel extends Model
     public function getFournisseur(){
     return $this->belongsTo(User::class, 'fournisseur_id')
                 ->where('role', 5);
-}
+     }
+
+    //  public function getPiece(){
+    //    return $this->belongsTo(PieceModel::class, 'piece_id');
+    //  }
 
 
 //Pharse de stat
