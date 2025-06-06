@@ -121,6 +121,9 @@ Route::group(['middleware' => 'common'], function(){
    //Pièce
    Route::get('panel/piece',[PieceController::class, 'piece_list']);
    Route::post('panel/pieces/create', [PieceController::class, 'piece_insert'])->name('pieces.insert');
+    Route::get('panel/piece/edit/{id}',[PieceController::class, 'piece_edit']);
+   Route::post('panel/piece/edit/{id}',[PieceController::class, 'piece_update']);
+   Route::get('panel/piece/delete/{id}',[PieceController::class, 'piece_delete']);
 
    //affecter_vehicule
    Route::get('panel/affecter_vehicule',[AffecterVehiculeController::class, 'affecter_vehicule_list']);

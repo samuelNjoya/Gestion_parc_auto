@@ -50,42 +50,40 @@ class PieceController extends Controller
  
     }
 
-    // public function piece_edit($id){
-    //     $data['meta_title'] = "Editer Maintenance/entretient";
-    //      $data['getVehicule'] = VehiculeModel::getVehiculeActive();
-    //     $data['getFournisseur'] = User::getFournisseurActive();
-    //     $data['getRecords'] = InterventionTechModel::getSingle($id);
+    public function piece_edit($id){
+        $data['meta_title'] = "Editer une piece";
+        $data['getRecords'] = PieceModel::getSingle($id);
 
-    //     return view('backend.interventionTech.edit', $data);
-    // }
+        return view('backend.piece.edit', $data);
+    }
 
-    // public function piece_update($id,Request $request){
+    public function piece_update($id,Request $request){
 
-    //     $piece = PieceModel::getSingle($id);
-    //     $piece->vehicule_id = trim($request->vehicule_id);
-    //     $piece->type = trim($request->type);
-    //     $piece->date = trim($request->date);
-    //     $piece->titre = trim($request->titre);
-    //     $piece->cout = trim($request->cout);
-    //     $piece->fournisseur_id = trim($request->fournisseur_id);
-    //     $piece->kilometrage = trim($request->kilometrage);
-    //     $piece->description = trim($request->description);
-    //     $piece->prochaine_date = trim($request->prochaine_date) ?: null;
-    //     $piece->frequence = trim($request->frequence);
-    //     $piece->duree_imobilisation = trim($request->duree) ?: null;
-    //     $piece->save();
+        $piece = PieceModel::getSingle($id);
+        $piece->nom = trim($request->nom);
+        $piece->reference = trim($request->reference);
+        $piece->date_installation = trim($request->date_installation);
+        $piece->date_expiration = trim($request->date_expiration);
+        $piece->cout_unitaire = trim($request->cout_unitaire);
+        $piece->quantite = trim($request->quantite);
+        $piece->kilometrage_installation = trim($request->kilometrage_installation);
+        $piece->duree_vie = trim($request->duree_vie);
+        $piece->description = trim($request->description);  
+        $piece->statut = trim($request->statut);
+      
+        $piece->save();
     
 
-    //     return redirect('panel/intervention_tech')->with('success','Piece mis a jour avec succes');
-    // }
+        return redirect('panel/piece')->with('success','Piece mis a jour avec succes');
+    }
 
-    // public function piece_delete($id){
-    //     $piece = PieceModel::getSingle($id);
-    //     $piece->is_delete = 1;
-    //     $piece->save();
+    public function piece_delete($id){
+        $piece = PieceModel::getSingle($id);
+        $piece->is_delete = 1;
+        $piece->save();
 
-    //     return redirect('panel/intervention_tech')->with('error','Maintenance/entretient supprimer avec succes');
-    // }
+        return redirect('panel/piece')->with('error','Maintenance/entretient supprimer avec succes');
+    }
 
     
 }

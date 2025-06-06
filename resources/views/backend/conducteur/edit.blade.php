@@ -4,7 +4,7 @@
  <div class="add-form-container fade-in">
             <!-- Formulaire d'ajout d'un conducteur -->
             <div class="card">
-                <h2 class="fw-bold">Ajouter un conducteur</h2>
+                <h2 class="fw-bold">Editer un conducteur</h2>
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
                      <div class="form-group side-by-side">
