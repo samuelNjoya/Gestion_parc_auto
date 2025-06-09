@@ -75,8 +75,9 @@
                                         <th>immatriculation <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
                                         <th>Type <button class="btn btn-link p-0" onclick="sortTable(2)"><i class="fas fa-sort"></i></button></th>
                                         <th>Titre<button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
-                                         <th>date <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
+                                        <th>date <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
                                         <th>cout<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
+                                        <th>cout total<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
                                         <th>kilometrage<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
                                         <th>fournisseur</th>
                                         <th>Prochaine date</th>
@@ -95,6 +96,7 @@
                                             <td >{{$item->titre}}</td>
                                             <td >{{ date('d-m-y', strtotime($item->date)) }}</td>
                                             <td >{{$item->cout}} fcfa</td>
+                                            <td>{{ number_format($item->cout_total, 0, ',', ' ') }} fcfa</td>
                                             <td >{{$item->kilometrage}} km</td>
                                             <td >{{$item->getFournisseur->nom}}</td> 
                                             <td >{{$item->prochaine_date}}</td>
@@ -102,7 +104,7 @@
                                             <td >{{$item->duree_imobilisation}}</td>    
                                             <td> 
                                                 <a href="{{ url('panel/intervention_tech/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ url('panel/intervention_tech/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
+                                                <a href="{{ url('panel/intervention_tech/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ? les pièces associées seront egalement supprimées');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                                  @if ($item->type==="maintenance")
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPieceModal" data-intervention-id="{{ $item->id }}">
                                                        Ajouter pièce

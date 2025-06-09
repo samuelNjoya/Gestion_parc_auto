@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
+
 class InterventionTechModel extends Model
 {
     protected $table = 'intervention_technique';
+
+  
 
     static public function getSingle($id){
         return InterventionTechModel::find($id); 
@@ -63,9 +66,33 @@ class InterventionTechModel extends Model
                 ->where('role', 5);
      }
 
-    //  public function getPiece(){
-    //    return $this->belongsTo(PieceModel::class, 'piece_id');
-    //  }
+  
+
+ public function pieces()
+{
+    return $this->hasMany(PieceModel::class, 'intervention_id');
+}
+
+public function getCoutTotalAttribute()
+{
+    $coutPieces = $this->pieces->sum(function ($piece) {
+        return $piece->cout_unitaire * $piece->quantite;
+    });
+
+    // Supposons que vous avez un champ cout qui contient le coût propre à l’intervention
+    return ($this->cout) + $coutPieces;
+}
+
+//Pour la supression en cascade lorsqu'on supprime une intervention technique les pieces associées sont egalements supprimées
+// protected static function booted() //Methode speciale
+// {
+//     static::deleting(function ($intervention) {
+//         // Supprimer toutes les pièces liées
+//         $intervention->pieces()->delete();
+//     });
+// }
+
+
 
 
 //Pharse de stat

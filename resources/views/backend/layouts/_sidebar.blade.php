@@ -26,7 +26,7 @@
                     <li class="{{ (Request::segment(2) == 'gestionnaire') ? 'active' : '' }}">
                         <a class="dropdown-item"  href="{{url('panel/gestionnaire')}}"><i class="fas fa-user-shield me-2"></i> Gestionnaire</a>
                     </li>
-                    <li><a class="dropdown-item" href="{{url('panel/fournisseur')}}"><i class="fas fa-user-shield me-2"></i> Fournisseur</a>
+                    <li><a class="dropdown-item" href="{{url('panel/fournisseur')}}"><i class="fas fa-user-shield me-2"></i> Prestataire</a>
                     </li>
 
                 </ul>

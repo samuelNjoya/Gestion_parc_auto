@@ -77,13 +77,20 @@ class InterventionTechController extends Controller
         return redirect('panel/intervention_tech')->with('success','Maintenance/entretient mis a jour avec succes');
     }
 
-    public function intervention_tech_delete($id){
-        $intervention_tech = InterventionTechModel::getSingle($id);
-        $intervention_tech->is_delete = 1;
-        $intervention_tech->save();
 
-        return redirect('panel/intervention_tech')->with('error','Maintenance/entretient supprimer avec succes');
-    }
+
+    public function intervention_tech_delete($id) {
+            $intervention = InterventionTechModel::findOrFail($id);
+
+            // Supprimez d'abord les pièces associées
+            $intervention->pieces()->update(['is_delete' => 1]);
+            // OU pour une suppression réelle :
+            // $intervention->pieces()->delete();
+            $intervention->is_delete = 1;
+            $intervention->save();
+
+            return redirect('panel/intervention_tech')->with('success', 'Supprimé avec succès');
+        }
 
     
 }

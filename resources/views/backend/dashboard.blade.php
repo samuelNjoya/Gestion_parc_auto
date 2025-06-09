@@ -82,13 +82,14 @@
                 <th>Date de fin</th>
                 <th>Statut</th>
                 <th>Description</th>
+                <th>signaler problème</th>
             </tr>
         </thead>
         <tbody>
             @forelse($vehicules as $vehicule)
             <tr>
                 <td>{{ $vehicule->immatriculation }}</td>
-                <td>{{ $vehicule->modele }}</td>
+                <td>{{ $vehicule->modele }}-{{ $vehicule->pivot->id }}</td>
                 <td>{{ \Carbon\Carbon::parse($vehicule->pivot->date_debut)->format('d/m/Y') }}</td>
                 <td>
                     @if($vehicule->pivot->date_fin)
@@ -99,6 +100,11 @@
                 </td>
                 <td>{{ $vehicule->pivot->statut ? 'Actif' : 'Inactif' }}</td>
                 <td>{{ $vehicule->pivot->description }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addPieceModal" data-affectation-id="{{ $vehicule->id }}">
+                       Signaler
+                    </button>
+                </td>
             </tr>
             @empty
             <tr>
@@ -111,8 +117,79 @@
     {{ $vehicules->links() }}
 </div>
 @endif
+{{-- @php
+    dd($vehicule->pivot); // Affiche toute la structure du pivot
+@endphp --}}
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="addPieceModal" tabindex="-1" aria-labelledby="addPieceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="POST" action="{{route('pannes.insert')}}" novalidate id="formulaire">
+      @csrf
+      <input type="hidden" name="affectation_id" id="affectation_id" value="">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPieceModalLabel">Declarer une panne</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group ">
+                <div class="form-group">
+                    <label for="piece_name" class="form-label">Type</label>
+                    <input type="text" name="type" class="form-control" value="{{old('type')}}"  class="" required>
+                     <div class="invalid-feedback">Veuillez Entrer le type(moteur...).</div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="form-label">Localisation</label>
+                    <input type="text" name="localisation" class="form-control" value="{{old('localisation')}}" id="" class="" required>
+                     <div class="invalid-feedback">Veuillez entrer la localisation.</div>
+                </div>
+            </div>
+          
+            <div class="form-group side-by-side">
+                    <div class="form-group">
+                        <label for="vehicule" class="form-label">kilometrage </label>
+                         <input type="number" name="kilometrage_panne" value="{{old('kilometrage_panne')}}" id="dateIntervention" class="form-control" required />
+                        <div class="invalid-feedback">Veuillez saisir le kilometrage.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicule" class="form-label">Date panne</label>
+                         <input type="date" name="date_panne" value="{{old('date_panne')}}"  class="form-control" required />
+                        <div class="invalid-feedback">Veuillez saisir une date.</div>
+                    </div>
+            </div>   
+                <div class="form-group">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" class="form-control" name="description" value="{{old('description')}}" rows="3" placeholder="Description"></textarea>
+                </div>
 
+                <div class="form-group full-width">
+                            <label for="photo">Photo</label>
+                            <input type="file" id="photo" name="profile_pic" accept="image/*" aria-describedby="photoHelp" value="{{ old('profile_pic') }}">
+                            <!-- <small id="photoHelp" class="form-text">Choisissez une image (JPEG, PNG).</small> -->
+                            <div class="photo-preview">
+                                <img id="photoPreview"  alt="">
+                            </div>
+                        </div>
 
+                 <div class="form-group">
+                            <label for="license_type">Statut <span class="required">*</span></label>
+                            <select id="license_type" name="statut" class="form-control" required aria-required="true">
+                                <option value="">Sélectionnez</option>
+                                <option value="1">Valide</option>
+                                <option value="0">Invalide</option>
+                            </select>
+                        <div class="invalid-feedback">Veuillez saisir une date.</div>
+                 </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Enregistrer</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 
@@ -138,6 +215,18 @@
             updateCount();
         });
     });
+
+
+ // Trés important pour l'ID de l'affectation en paramettre
+  document.addEventListener('DOMContentLoaded', function () {
+        var addPieceModal = document.getElementById('addPieceModal');
+        addPieceModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Bouton qui a déclenché le modal
+            var affectationId = button.getAttribute('data-affectation-id');
+            var inputAffectation = addPieceModal.querySelector('#affectation_id');
+            inputAffectation.value = affectationId;
+        });
+});
 
 
 </script>

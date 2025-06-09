@@ -41,7 +41,7 @@ class PieceController extends Controller
         $piece->duree_vie = trim($request->duree_vie);
         $piece->description = trim($request->description);  
         $piece->statut = trim($request->statut);
-        
+     
         // $piece->created_by_id = Auth::user()->id;
         $piece->save();
 
@@ -70,6 +70,7 @@ class PieceController extends Controller
         $piece->duree_vie = trim($request->duree_vie);
         $piece->description = trim($request->description);  
         $piece->statut = trim($request->statut);
+
       
         $piece->save();
     
