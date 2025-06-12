@@ -86,6 +86,13 @@
                 <a class="nav-link {{ (Request::segment(2) == 'historique_cout') ? 'active' : '' }}" href={{url('panel/historique_cout')}}><i class="fas fa-history me-2"></i> Historique des coûts</a>
             </li>
         @endif
+
+         @if (Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 4)
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::segment(2) == 'panne') ? 'active' : '' }}" href={{url('panel/panne')}}><i class="fas fa-history me-2"></i> Panne</a>
+            </li>
+        @endif
+
         <li class="nav-item">
             <a class="nav-link {{ (Request::segment(2) == 'mon_compte') ? 'active' : '' }}" href={{url('panel/mon_compte')}}><i class="fas fa-user me-2"></i> Profil</a>
         </li>

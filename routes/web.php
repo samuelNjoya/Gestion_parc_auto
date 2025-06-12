@@ -134,7 +134,7 @@ Route::group(['middleware' => 'common'], function(){
    Route::post('panel/affecter_vehicule/edit/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_update']);
    Route::get('panel/affecter_vehicule/delete/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_delete']);
 
-   //Pièce
+   //Panne
    Route::get('panel/panne',[PanneController::class, 'panne_list']);
    Route::post('panel/panne/create', [PanneController::class, 'panne_insert'])->name('pannes.insert');
    Route::get('panel/panne/edit/{id}',[PanneController::class, 'panne_edit']);

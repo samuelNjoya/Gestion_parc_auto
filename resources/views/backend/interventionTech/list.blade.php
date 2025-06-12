@@ -106,7 +106,7 @@
                                                 <a href="{{ url('panel/intervention_tech/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ url('panel/intervention_tech/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ? les pièces associées seront egalement supprimées');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                                  @if ($item->type==="maintenance")
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPieceModal" data-intervention-id="{{ $item->id }}">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addPieceModal" data-intervention-id="{{ $item->id }}">
                                                        Ajouter pièce
                                                     </button>
                                                 @endif

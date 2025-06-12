@@ -89,7 +89,7 @@
             @forelse($vehicules as $vehicule)
             <tr>
                 <td>{{ $vehicule->immatriculation }}</td>
-                <td>{{ $vehicule->modele }}-{{ $vehicule->pivot->id }}</td>
+                <td>{{ $vehicule->modele }}</td>
                 <td>{{ \Carbon\Carbon::parse($vehicule->pivot->date_debut)->format('d/m/Y') }}</td>
                 <td>
                     @if($vehicule->pivot->date_fin)
@@ -123,7 +123,7 @@
 <!-- Modal Bootstrap -->
 <div class="modal fade" id="addPieceModal" tabindex="-1" aria-labelledby="addPieceModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="POST" action="{{route('pannes.insert')}}" novalidate id="formulaire">
+    <form method="POST" action="{{route('pannes.insert')}}" novalidate id="formulaire" enctype="multipart/form-data">
       @csrf
       <input type="hidden" name="affectation_id" id="affectation_id" value="">
       <div class="modal-content">
