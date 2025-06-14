@@ -21,11 +21,9 @@ class PanneController extends Controller
 
     public function Panne_insert(Request $request){
 
-     // dd($request->all()); 
-
-       
         $panne = new PanneModel();
         $panne->affectation_id = trim($request->affectation_id); // id_vehicule
+        $panne->conducteur_id = auth()->id();
         $panne->type = trim($request->type);
         $panne->localisation = trim($request->localisation);
         $panne->kilometrage_panne = trim($request->kilometrage_panne);
@@ -60,11 +58,25 @@ class PanneController extends Controller
     public function panne_update($id,Request $request){
 
         $panne = PanneModel::getSingle($id);
-       
+        $panne->type = trim($request->type);
+        $panne->localisation = trim($request->localisation);
+        $panne->kilometrage_panne = trim($request->kilometrage_panne);
+        $panne->date_panne = trim($request->date_panne);
+        $panne->description = trim($request->description);
+        $panne->statut = trim($request->statut);
+     
+        if(!empty($request->file('profile_pic'))){
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/panne/', $filename);
 
-      
+            $panne->photo = $filename;
+            $panne->save();
+        }
+        
         $panne->save();
-    
 
         return redirect('panel/panne')->with('success','panne mis a jour avec succes');
     }

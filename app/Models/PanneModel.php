@@ -59,11 +59,14 @@ class PanneModel extends Model
     if(!empty(Request::get('id'))){
         $return->where('panne.id', '=', Request::get('id'));
     }
-    if(!empty(Request::get('nom'))){
-        $return->where('panne.nom', 'like', '%' . Request::get('nom') . '%');
+    if(!empty(Request::get('type'))){
+        $return->where('panne.type', '=', Request::get('type'));
     }
-    if(!empty(Request::get('reference'))){
-        $return->where('panne.reference', 'like', '%' . Request::get('reference') . '%');
+    if(!empty(Request::get('immatriculation'))){
+        $return->where('vehicule.immatriculation', 'like', '%' . Request::get('immatriculation') . '%');
+    }
+    if(!empty(Request::get('marque'))){
+        $return->where('vehicule.marque', 'like', '%' . Request::get('marque') . '%');
     }
     if(!empty(Request::get('statut'))){
         $statut = Request::get('statut');
@@ -92,8 +95,8 @@ class PanneModel extends Model
         }
     }
 
-//     public function getConducteur(){
-//     return $this->belongsTo(User::class, 'conducteur_id')
-//                 ->where('role', 4);
-// }
+    public function getConducteur(){
+    return $this->belongsTo(User::class, 'conducteur_id')
+                ->where('role', 4);
+}
 }

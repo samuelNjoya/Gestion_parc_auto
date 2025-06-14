@@ -175,8 +175,8 @@
                             <label for="license_type">Statut <span class="required">*</span></label>
                             <select id="license_type" name="statut" class="form-control" required aria-required="true">
                                 <option value="">Sélectionnez</option>
-                                <option value="1">Valide</option>
-                                <option value="0">Invalide</option>
+                                <option value="1">En attente</option>
+                                <option value="0">Résolu</option>
                             </select>
                         <div class="invalid-feedback">Veuillez saisir une date.</div>
                  </div>
