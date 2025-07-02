@@ -25,7 +25,7 @@ class VehiculeModel extends Model
                  $return = $return->where('modele', 'like', '%' .Request::get('modele').'%');
             }
              if(!empty(Request::get('type_caburant'))){
-                 $return = $return->where('type_caburant', 'like', '%' .Request::get('type_caburant').'%');
+                 $return = $return->where('type_carburant', 'like', '%' .Request::get('type_caburant').'%');
             }
              if(!empty(Request::get('departement'))){
                  $return = $return->where('departement', 'like', '%' .Request::get('departement').'%');

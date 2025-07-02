@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
+
 class InterventionTechModel extends Model
 {
     protected $table = 'intervention_technique';
+
+  
 
     static public function getSingle($id){
         return InterventionTechModel::find($id); 
@@ -15,22 +18,28 @@ class InterventionTechModel extends Model
 
 
        static public function getInterventionTech(){
-        $return = self::select('*');
+        // $return = self::select('*');
+         $return = self::select('intervention_technique.*', 'vehicule.immatriculation', 'vehicule.marque')
+           ->join('vehicule', 'vehicule.id', '=', 'intervention_technique.vehicule_id');
+
             if(!empty(Request::get('id'))){
                  $return = $return->where('id', '=', Request::get('id'));
             }
-            if(!empty(Request::get('date_conso'))){
-                 $return = $return->where('date_conso', 'like', '%' .Request::get('date_conso').'%');
+            if(!empty(Request::get('date'))){
+                 $return = $return->where('date', 'like', '%' .Request::get('date').'%');
             }
-             if(!empty(Request::get('quantite_conso'))){
-                 $return = $return->where('quantite_conso', 'like', '%' .Request::get('quantite_conso').'%');
+               if(!empty(Request::get('type'))){
+                 $return = $return->where('type', 'like', '%' .Request::get('type').'%');
             }
-            if(!empty(Request::get('cout_conso'))){
-                    $return = $return->where('cout_conso', 'like', '%' .Request::get('cout_conso').'%');
+             if(!empty(Request::get('titre'))){
+                 $return = $return->where('titre', 'like', '%' .Request::get('titre').'%');
+            }
+            if(!empty(Request::get('cout'))){
+                    $return = $return->where('cout', 'like', '%' .Request::get('cout').'%');
              }
-            if(!empty(Request::get('kilometrage_plein'))){
-             $return = $return->where('kilometrage_plein', 'like', '%' .Request::get('kilometrage_plein').'%');
-            } 
+            if(!empty(Request::get('immatriculation'))){
+             $return = $return->where('vehicule.immatriculation', 'like', '%' .Request::get('immatriculation').'%');
+            }
             // if(!empty(Request::get('statut'))){
             //     $statut = Request::get('statut');
             //     if ($statut == 100) {
@@ -39,8 +48,8 @@ class InterventionTechModel extends Model
             //     $return = $return->where('statut', '=', $statut);
             //  }
 
-     $return = $return->where('is_delete', '=', 0)//whereIn
-                ->orderBy('id', 'desc')
+     $return = $return->where('intervention_technique.is_delete', '=', 0)//whereIn
+                ->orderBy('intervention_technique.id', 'desc')
                 ->paginate(10);   
         return $return;
     }
@@ -55,7 +64,35 @@ class InterventionTechModel extends Model
     public function getFournisseur(){
     return $this->belongsTo(User::class, 'fournisseur_id')
                 ->where('role', 5);
+     }
+
+  
+
+ public function pieces()
+{
+    return $this->hasMany(PieceModel::class, 'intervention_id');
 }
+
+public function getCoutTotalAttribute()
+{
+    $coutPieces = $this->pieces->sum(function ($piece) {
+        return $piece->cout_unitaire * $piece->quantite;
+    });
+
+    // Supposons que vous avez un champ cout qui contient le coût propre à l’intervention
+    return ($this->cout) + $coutPieces;
+}
+
+//Pour la supression en cascade lorsqu'on supprime une intervention technique les pieces associées sont egalements supprimées
+// protected static function booted() //Methode speciale
+// {
+//     static::deleting(function ($intervention) {
+//         // Supprimer toutes les pièces liées
+//         $intervention->pieces()->delete();
+//     });
+// }
+
+
 
 
 //Pharse de stat

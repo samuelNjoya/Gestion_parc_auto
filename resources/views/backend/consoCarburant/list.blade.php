@@ -26,14 +26,24 @@
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">date</label>
-                                <input type="text"  value="{{ Request::get('date') }}" placeholder="date" name="date">
+                                <label for="filter-vehicle">date_conso</label>
+                                <input type="date"  value="{{ Request::get('date_conso') }}" placeholder="date_conso" name="date_conso">
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                                <label for="filter-vehicle">quantite_conso</label>
+                                <input type="text"  value="{{ Request::get('quantite_conso') }}" placeholder="quantite_conso" name="quantite_conso">
+                            </div>
+
+                            <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                                <label for="filter-vehicle">cout_conso</label>
+                                <input type="text"  value="{{ Request::get('cout_conso') }}" placeholder="cout_conso" name="cout_conso">
+                            </div>
+
+                            {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
                                 <label for="filter-vehicle">Prestataire</label>
                                 <input type="text"  value="{{ Request::get('fournisseur_id') }}" placeholder="address" name="fournisseur_id">
-                            </div>
+                            </div> --}}
 
                             {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2">
                                 <label for="filter-status">Station</label>

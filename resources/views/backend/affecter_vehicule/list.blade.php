@@ -16,24 +16,24 @@
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Nom</label>
+                                <label for="filter-vehicle">Nom conducteur</label>
                                 <input type="text"  value="{{ Request::get('nom') }}" placeholder="nom" name="nom">
                             </div>
 
                              <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Prenom</label>
+                                <label for="filter-vehicle">Prenom conducteur</label>
                                 <input type="text"  value="{{ Request::get('prenom') }}" placeholder="prenom" name="prenom">
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Email</label>
-                                <input type="text"  value="{{ Request::get('email') }}" placeholder="email" name="email">
+                                <label for="filter-vehicle">immatriculation</label>
+                                <input type="text"  value="{{ Request::get('immatriculation') }}" placeholder="immatriculation" name="immatriculation">
                             </div>
 
-                            <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                            {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
                                 <label for="filter-vehicle">Address</label>
                                 <input type="text"  value="{{ Request::get('address') }}" placeholder="address" name="address">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2">
                                 <label for="filter-status">Statut</label>

@@ -10,6 +10,8 @@ use App\Http\Controllers\backend\DocumentsVehiculeController;
 use App\Http\Controllers\backend\GestionnaireController;
 use App\Http\Controllers\backend\FournisseurController;
 use App\Http\Controllers\backend\InterventionTechController;
+use App\Http\Controllers\backend\PanneController;
+use App\Http\Controllers\backend\PieceController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\VehiculeController;
 use Illuminate\Support\Facades\Route;
@@ -109,13 +111,20 @@ Route::group(['middleware' => 'common'], function(){
    Route::post('panel/documentsVehicule/edit/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_update']);
    Route::get('panel/documentsVehicule/delete/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_delete']);
 
-     //intervention_tech
+   //intervention_tech
    Route::get('panel/intervention_tech',[InterventionTechController::class, 'intervention_tech_list']);
    Route::get('panel/intervention_tech/create',[InterventionTechController::class, 'intervention_tech_create']);
    Route::post('panel/intervention_tech/create',[InterventionTechController::class, 'intervention_tech_insert']);
    Route::get('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_edit']);
    Route::post('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_update']);
    Route::get('panel/intervention_tech/delete/{id}',[InterventionTechController::class, 'intervention_tech_delete']);
+
+   //Pièce
+   Route::get('panel/piece',[PieceController::class, 'piece_list']);
+   Route::post('panel/pieces/create', [PieceController::class, 'piece_insert'])->name('pieces.insert');
+   Route::get('panel/piece/edit/{id}',[PieceController::class, 'piece_edit']);
+   Route::post('panel/piece/edit/{id}',[PieceController::class, 'piece_update']);
+   Route::get('panel/piece/delete/{id}',[PieceController::class, 'piece_delete']);
 
    //affecter_vehicule
    Route::get('panel/affecter_vehicule',[AffecterVehiculeController::class, 'affecter_vehicule_list']);
@@ -124,6 +133,13 @@ Route::group(['middleware' => 'common'], function(){
    Route::get('panel/affecter_vehicule/edit/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_edit']);
    Route::post('panel/affecter_vehicule/edit/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_update']);
    Route::get('panel/affecter_vehicule/delete/{id}',[AffecterVehiculeController::class, 'affecter_vehicule_delete']);
+
+   //Panne
+   Route::get('panel/panne',[PanneController::class, 'panne_list']);
+   Route::post('panel/panne/create', [PanneController::class, 'panne_insert'])->name('pannes.insert');
+   Route::get('panel/panne/edit/{id}',[PanneController::class, 'panne_edit']);
+   Route::post('panel/panne/edit/{id}',[PanneController::class, 'panne_update']);
+   Route::get('panel/panne/delete/{id}',[PanneController::class, 'panne_delete']);
 
    //exportation 
 

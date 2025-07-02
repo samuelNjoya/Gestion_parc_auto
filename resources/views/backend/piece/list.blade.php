@@ -16,28 +16,37 @@
                             </div>
 
                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">immatriculation</label>
-                                <input type="text"  value="{{ Request::get('immatriculation') }}" placeholder="immatriculation" name="immatriculation">
+                                <label for="filter-vehicle">nom</label>
+                                <input type="text"  value="{{ Request::get('nom') }}" placeholder="nom" name="nom">
                             </div>
 
                              <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">type</label>
-                                <input type="text"  value="{{ Request::get('type') }}" placeholder="type" name="type">
+                                <label for="filter-vehicle">reference</label>
+                                <input type="text"  value="{{ Request::get('reference') }}" placeholder="reference" name="reference">
                             </div>
 
-                            <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                            {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
                                 <label for="filter-vehicle">titre</label>
                                 <input type="text"  value="{{ Request::get('titre') }}" placeholder="titre" name="titre">
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                            {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
                                 <label for="filter-vehicle">date</label>
                                 <input type="text"  value="{{ Request::get('date') }}" placeholder="date" name="date">
-                            </div>
+                            </div> --}}
 
-                             <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
+                             {{-- <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
                                 <label for="filter-vehicle">cout</label>
                                 <input type="text"  value="{{ Request::get('cout') }}" placeholder="cout" name="cout">
+                            </div> --}}
+
+                            <div class="form-group col-sm-4 col-md-3 col-lg-2">
+                                <label for="filter-status">Statut</label>
+                                    <select id="filter-status" name="statut">
+                                        <option value="">Select</option>
+                                        <option {{ (Request::get('statut') == '1') ? 'selected' : '' }} value="1">Valide</option>
+                                        <option {{ (Request::get('statut') == '100') ? 'selected' : '' }} value="100">Invalide</option>
+                                    </select>
                             </div>
 
                           
@@ -46,7 +55,7 @@
                                 <label class=""></label>
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary" >Filtrer</button>
-                                    <a class="btn btn-secondary" href="{{url('panel/intervention_tech')}}" > Réinitialiser</a>
+                                    <a class="btn btn-secondary" href="{{url('panel/piece')}}" > Réinitialiser</a>
                                 </div>
                             </div>
                         </div>
@@ -57,14 +66,12 @@
                 <div class="">
 
                     <div class="d-flex justify-content-between mb-1">
-                        <h3 class="">liste des Maintenance/Entretien</h3>
+                        <h3 class="">liste des pieces associée aux interventions techniques</h3>
                         {{-- <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i></a> --}}
                         <div class="pull-right">
-                            <a href="{{url('panel/intervention_tech/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
-                            <a href="{{url('panel/piece')}}" class="btn btn-info "><i class="fas fa-list me-1"></i>List des pieces</a>
-                            @if (Auth::user()->role == 1 || Auth::user()->role == 2) 
-                              <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter une Maintenance</a>
-                            @endif
+                            {{-- <a href="{{url('panel/intervention_tech/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
+                            <a href="{{url('panel/piece')}}" class="btn btn-info "><i class="fas fa-list me-1"></i>List des pieces</a>--}}
+                            <a href="{{url('panel/intervention_tech')}}" class="btn btn-primary "><i class="fas fa-list me-1"></i>intervention Techniques</a> 
                        </div>
                     </div>
 
@@ -74,48 +81,44 @@
                                     <tr>
                                   
                                         <th>#<button class="btn btn-link p-0" onclick="sortTable(0)"><i class="fas fa-sort"></i></button></th>
-                                        <th>immatriculation <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
-                                        <th>Type <button class="btn btn-link p-0" onclick="sortTable(2)"><i class="fas fa-sort"></i></button></th>
-                                        <th>Titre<button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
-                                        <th>date <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
-                                        <th>cout<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
-                                        <th>cout total<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
-                                        <th>kilometrage<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
-                                        <th>fournisseur</th>
-                                        <th>Prochaine date</th>
-                                        <th>frequence</th>
-                                        <th>durée immobilisation</th>
-                                        @if (Auth::user()->role == 1 || Auth::user()->role == 2) 
-                                          <th>Actions</th>
-                                        @endif
+                                        <th>Titre intervention <button class="btn btn-link p-0" onclick="sortTable(1)"><i class="fas fa-sort"></i></button></th>
+                                        <th>Nom <button class="btn btn-link p-0" onclick="sortTable(2)"><i class="fas fa-sort"></i></button></th>
+                                        <th>Reference<button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
+                                         <th>date installation <button class="btn btn-link p-0" onclick="sortTable(3)"><i class="fas fa-sort"></i></button></th>
+                                        <th>date expiration<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
+                                        <th>coût unitaire<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
+                                        <th>quantite</th>
+                                        <th>Coût total</th>
+                                        <th>kilometrage a l'installation</th>
+                                        <th>statut</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="TriTableBody">
                                 @forelse ($getRecords as $item)  
                                     <tr >
-                                            <td >{{$item->id}}</td>
-                                            <td >{{$item->getVehicule->immatriculation}}-{{$item->getVehicule->marque}}</td>
-                                            <td >{{$item->type}}</td>
-                                            <td >{{$item->titre}}</td>
-                                            <td >{{ date('d-m-y', strtotime($item->date)) }}</td>
-                                            <td >{{$item->cout}} fcfa</td>
-                                            <td>{{ number_format($item->cout_total, 0, ',', ' ') }} fcfa</td>
-                                            <td >{{$item->kilometrage}} km</td>
-                                            <td >{{$item->getFournisseur->nom}}</td> 
-                                            <td >{{$item->prochaine_date}}</td>
-                                            <td >{{$item->frequence}}</td>
-                                            <td >{{$item->duree_imobilisation}}</td>  
-                                            @if (Auth::user()->role == 1 || Auth::user()->role == 2)   
-                                            <td> 
-                                                <a href="{{ url('panel/intervention_tech/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ url('panel/intervention_tech/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ? les pièces associées seront egalement supprimées');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
-                                                 @if ($item->type==="maintenance")
-                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addPieceModal" data-intervention-id="{{ $item->id }}">
-                                                       Ajouter pièce
-                                                    </button>
+                                            <td >{{$item->id}}</td> 
+                                            <td >{{$item->getInterventionTechnique->titre}} - ({{$item->getInterventionTechnique->getVehicule->immatriculation}})</td>
+                                            <td >{{$item->nom}}</td>
+                                            <td >{{$item->reference}}</td>
+                                            <td >{{ date('d-m-y', strtotime($item->date_installation)) }}</td>
+                                            <td >{{ date('d-m-y', strtotime($item->date_expiration)) }}</td>
+                                            <td >{{$item->cout_unitaire}} fcfa</td>
+                                            <td >{{$item->quantite}}</td>
+                                            <td >{{$item->cout_unitaire*$item->quantite}} fcfa</td>
+                                            <td >{{$item->kilometrage_installation}} km</td>
+                                            <td >
+                                                @if ($item->statut == 1)
+                                                    <span class="label label-success">Valide</span>
+                                                @else
+                                                    <span class="label label-danger">Invalide</span>
                                                 @endif
+                                            </td>    
+                                            <td> 
+                                                <a href="{{ url('panel/piece/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ url('panel/piece/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
+                                              
                                             </td>
-                                            @endif
                                         </tr> 
                                 @empty
                                           <tr>
@@ -219,23 +222,5 @@
 </div>
      
  @endsection  
-
- {{-- tres tres important pour passer l'id en l'intervention en paramètre --}}
-
-@section('scripts')
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var addPieceModal = document.getElementById('addPieceModal');
-        addPieceModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget; // Bouton qui a déclenché le modal
-            var interventionId = button.getAttribute('data-intervention-id');
-            var inputIntervention = addPieceModal.querySelector('#intervention_id');
-            inputIntervention.value = interventionId;
-        });
-    });
-</script>
-@endsection
-
-
 
 
