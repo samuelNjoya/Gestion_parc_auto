@@ -80,56 +80,18 @@ class CarburantController extends Controller
     }
 
 
-    // pour le graph
-//     public function index()
-// {
-//     $data = ConsoCarburantModel::select(
-//             DB::raw("DATE_FORMAT(date_conso, '%Y-%m') as mois"),
-//             DB::raw('SUM(cout) as total_cout')
-//         )
-//         ->where('is_delete', 0)  // si tu utilises ce champ pour filtrer
-//         ->groupBy('mois')
-//         ->orderBy('mois')
-//         ->get();
 
-//     $labels = $data->pluck('mois');
-//     $couts = $data->pluck('total_cout');
 
-//     return view('backend.dashboard', compact('labels', 'couts'));
-// }
+// public function coutParMois(Request $request, $annee = null){
+//    // $annee = $annee ?? date('Y'); // Année courante par défaut
+//     $annee = $request->get('annee', $annee ?? date('Y'));
 
-// public function showDashboard()
-// {
-//     // Récupérer les données de maintenance (exemple)
-//     $maintenanceData = ConsoCarburantModel::select(
-//             DB::raw("DATE_FORMAT(date_cons, '%b') as mois"), // mois abrégé (Jan, Fév...)
-//             DB::raw('SUM(cout_cons) as cout') // cout total par mois
-//         )
-//         ->groupBy('mois')
-//         ->orderBy(DB::raw("MONTH(date_cons)")) // important pour l'ordre des mois
-//         ->pluck('cout', 'mois')  // récupère un tableau associatif [mois => cout]
-//         ->toArray();
-
-//     // Formater les données pour Chart.js
-//     $labels = array_keys($maintenanceData); // mois
-//     $couts = array_values($maintenanceData); // couts
-
-//     // Préparer le tableau final à envoyer à la vue
-//     $data = [
-//         'labels' => $labels,
-//         'couts' => $couts
-//     ];
-
-//     return view('backend.dashboard', compact('data')); // Passer $data à la vue
-// }
-
-// public function coutParMois()
-// {
 //     $data = DB::table('conso_carburant')
 //         ->select(
 //             DB::raw("DATE_FORMAT(date_conso, '%b %Y') as mois"),
 //             DB::raw("SUM(cout_conso) as total_cout")
 //         )
+//         ->whereYear('date_conso', $annee)
 //         ->groupBy('mois')
 //         ->orderBy('mois')
 //         ->get();
@@ -137,21 +99,34 @@ class CarburantController extends Controller
 //     $labels = $data->pluck('mois');
 //     $values = $data->pluck('total_cout');
 
-//     return view('backend.historiqueCout', compact('labels', 'values'));
+//     // Liste des années disponibles pour le select
+//     $anneesDisponibles = DB::table('conso_carburant')
+//         ->select(DB::raw('YEAR(date_conso) as annee'))
+//         ->distinct()
+//         ->orderBy('annee', 'desc')
+//         ->pluck('annee');
 
+//     return view('backend.historiqueCout', compact('labels', 'values', 'annee', 'anneesDisponibles'));
 // }
 
 public function coutParMois(Request $request, $annee = null)
 {
-   // $annee = $annee ?? date('Y'); // Année courante par défaut
     $annee = $request->get('annee', $annee ?? date('Y'));
+    $vehiculeId = $request->get('vehicule_id'); // nouveau paramètre
 
-    $data = DB::table('conso_carburant')
+    $query = DB::table('conso_carburant')
+        ->join('vehicule', 'vehicule.id', '=', 'conso_carburant.vehicule_id')
         ->select(
             DB::raw("DATE_FORMAT(date_conso, '%b %Y') as mois"),
             DB::raw("SUM(cout_conso) as total_cout")
         )
-        ->whereYear('date_conso', $annee)
+        ->whereYear('date_conso', $annee);
+
+    if (!empty($vehiculeId)) {
+        $query->where('vehicule_id', $vehiculeId);
+    }
+
+    $data = $query
         ->groupBy('mois')
         ->orderBy('mois')
         ->get();
@@ -159,14 +134,31 @@ public function coutParMois(Request $request, $annee = null)
     $labels = $data->pluck('mois');
     $values = $data->pluck('total_cout');
 
-    // Liste des années disponibles pour le select
     $anneesDisponibles = DB::table('conso_carburant')
         ->select(DB::raw('YEAR(date_conso) as annee'))
         ->distinct()
         ->orderBy('annee', 'desc')
         ->pluck('annee');
 
-    return view('backend.historiqueCout', compact('labels', 'values', 'annee', 'anneesDisponibles'));
+    $vehicules = DB::table('vehicule')->get();
+
+    $vehiculeNom = null;
+    if ($vehiculeId) {
+        $vehicule = DB::table('vehicule')->where('id', $vehiculeId)->first();
+        $vehiculeNom = $vehicule ? $vehicule->immatriculation : null;
+    }
+
+
+    return view('backend.historiqueCout', compact(
+        'labels',
+        'values',
+        'annee',
+        'anneesDisponibles',
+        'vehicules',
+        'vehiculeId',
+        'vehiculeNom'
+    ));
 }
+
 
 }

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+// use Barryvdh\DomPDF\Facade\Pdf as PDF;
+
 
 class VehiculeController extends Controller
 {
@@ -131,7 +133,7 @@ class VehiculeController extends Controller
         ];
 
        // $pdf = app('dompdf.wrapper'); // Crée une instance de PDF
-        $pdf = PDF::loadView('pdf/vehicule', $data);
+        $pdf = pdf::loadView('pdf/vehicule', $data);
 
         return $pdf->download('vehicule.pdf');
     }

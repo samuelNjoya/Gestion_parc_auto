@@ -26,14 +26,14 @@
                     <li class="{{ (Request::segment(2) == 'gestionnaire') ? 'active' : '' }}">
                         <a class="dropdown-item"  href="{{url('panel/gestionnaire')}}"><i class="fas fa-user-shield me-2"></i> Gestionnaire</a>
                     </li>
-                    <li><a class="dropdown-item" href="{{url('panel/fournisseur')}}"><i class="fas fa-user-shield me-2"></i> Fournisseur</a>
+                    <li><a class="dropdown-item" href="{{url('panel/fournisseur')}}"><i class="fas fa-user-shield me-2"></i> PrestataireExterne</a>
                     </li>
 
                 </ul>
             </li>
             @endif
 
-            @if (Auth::user()->role == 1 || Auth::user()->role == 2)
+            @if (Auth::user()->role == 1 || Auth::user()->role == 2 )
             <li class="nav-item " >
                 <a class="nav-link {{ (Request::segment(2) == 'vehicule') ? 'active' : '' }}" href="{{url('panel/vehicule')}}"><i class="fas fa-car me-2"></i> Véhicules</a>
             </li>
@@ -50,21 +50,22 @@
                 <li><a class="dropdown-item" href="/assignment-history"><i class="fas fa-history me-2"></i>
                         Historique</a></li>  
             </li> --}}
-        </ul>
-        
-        <li class="nav-item">
-            <a class="nav-link {{ (Request::segment(2) == 'conso_carburant') ? 'active' : '' }}" href="{{url('panel/conso_carburant')}}"><i class="fas fa-gas-pump me-2"></i>
-                Carburant</a>
+        {{-- </ul> --}}
+          @endif
+          @if (Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::segment(2) == 'conso_carburant') ? 'active' : '' }}" href="{{url('panel/conso_carburant')}}"><i class="fas fa-gas-pump me-2"></i>
+                    Carburant</a>
 
-        </li>
-         <li class="nav-item">
-            <a class="nav-link {{ (Request::segment(2) == 'intervention_tech') ? 'active' : '' }}" href="{{url('panel/intervention_tech')}}"><i class="fas fa-clipboard-list me-2"></i>
-                Maintenance/Entretien</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::segment(2) == 'intervention_tech') ? 'active' : '' }}" href="{{url('panel/intervention_tech')}}"><i class="fas fa-clipboard-list me-2"></i>
+                    Maintenance/Entretien</a>
 
-        </li>
+            </li>
+        @endif
 
-
-        <!-- Ajout du dropdown Attribution -->
+        @if (Auth::user()->role == 1 || Auth::user()->role == 2)
         <li class="nav-item">
             <a class="nav-link dropdown-toggle" href="#" id="assignmentDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">

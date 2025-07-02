@@ -64,7 +64,9 @@
                         <div class="pull-right">
                             <a href="{{url('panel/intervention_tech/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
                             {{-- <a href="{{url('panel/intervention_tech/users_excel')}}" class="btn btn-info "><i class="fas fa-print me-1"></i>Excel</a> --}}
-                            <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter une Maintenance</a>
+                            @if (Auth::user()->role == 1 || Auth::user()->role == 2) 
+                              <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter une Maintenance</a>
+                            @endif
                        </div>
                     </div>
 
@@ -84,8 +86,9 @@
                                         <th>Prochaine date</th>
                                         <th>frequence</th>
                                         <th>durée immobilisation</th>
-                                        <th>Actions</th>
-                                        
+                                        @if (Auth::user()->role == 1 || Auth::user()->role == 2) 
+                                          <th>Actions</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody id="TriTableBody">
@@ -101,11 +104,13 @@
                                             <td >{{$item->getFournisseur->nom}}</td> 
                                             <td >{{$item->prochaine_date}}</td>
                                             <td >{{$item->frequence}}</td>
-                                            <td >{{$item->duree_imobilisation}}</td>    
+                                            <td >{{$item->duree_imobilisation}}</td>  
+                                            @if (Auth::user()->role == 1 || Auth::user()->role == 2)   
                                             <td>
                                                 <a href="{{ url('panel/intervention_tech/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ url('panel/intervention_tech/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
                                             </td>
+                                            @endif
                                         </tr> 
                                 @empty
                                           <tr>

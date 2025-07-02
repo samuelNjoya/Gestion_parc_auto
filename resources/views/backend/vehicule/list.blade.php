@@ -64,7 +64,7 @@
                         <div class="pull-right">
                             <a href="{{url('panel/vehicule/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
                             <a href="{{url('panel/vehicule/users_excel')}}" class="btn btn-info "><i class="fas fa-print me-1"></i>Excel</a>
-                            <a href="{{url('panel/vehicule/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter conducteur</a>
+                            <a href="{{url('panel/vehicule/create')}}" class="btn btn-primary "><i class="fas fa-plus me-1"></i>Ajouter un vehicule</a>
                        </div>
                     </div>
 

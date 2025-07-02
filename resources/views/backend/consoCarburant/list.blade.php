@@ -64,7 +64,10 @@
                         <div class="pull-right">
                             <a href="{{url('panel/conso_carburant/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
                             {{-- <a href="{{url('panel/conso_carburant/users_excel')}}" class="btn btn-info "><i class="fas fa-print me-1"></i>Excel</a> --}}
-                           <a href="{{url('panel/conso_carburant/create')}}" class="btn btn-primary"><i class="fas fa-plus me-1"></i>Ajouter conso_carburant</a>
+                            @if (Auth::user()->role == 1 || Auth::user()->role == 2)
+                               <a href="{{url('panel/conso_carburant/create')}}" class="btn btn-primary"><i class="fas fa-plus me-1"></i>Ajouter conso_carburant</a>
+                            @endif
+
                        </div>
                     </div>
 
@@ -82,8 +85,9 @@
                                         <th>cout<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
                                         <th>kilometrage_plein<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
                                         <th>Prestataire</th>
-                                        <th>Actions</th>
-                                        
+                                        @if (Auth::user()->role == 1 || Auth::user()->role == 2)
+                                          <th>Actions</th>
+                                          @endif
                                     </tr>
                                 </thead>
                                 <tbody id="TriTableBody">
@@ -96,11 +100,13 @@
                                             <td >{{$item->quantite_conso}} l</td>
                                             <td >{{$item->cout_conso}} fcfa</td>
                                             <td >{{$item->kilometrage_plein}} km</td>
-                                            <td >{{$item->getFournisseur->nom}}</td>    
-                                            <td>
-                                                <a href="{{ url('panel/conso_carburant/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ url('panel/conso_carburant/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
-                                            </td>
+                                            <td >{{$item->getFournisseur->nom}}</td>   
+                                            @if (Auth::user()->role == 1 || Auth::user()->role == 2) 
+                                                <td>
+                                                    <a href="{{ url('panel/conso_carburant/edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ url('panel/conso_carburant/delete', $item->id) }}" onclick="return confirm('Est vous sur de vouloir supprimé ?');" class="btn btn-danger  btn-sm" ><i class="fas fa-trash"></i></a>
+                                                </td>
+                                             @endif
                                         </tr> 
                                 @empty
                                           <tr>

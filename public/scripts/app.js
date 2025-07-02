@@ -196,7 +196,7 @@ const epiDistributionChart = new Chart(document.getElementById('epiDistributionC
           event.preventDefault()
           event.stopPropagation()
         }
-        // Ajout de la classe Bootstrap 'was-validated' pour afficher les messages d'erreur
+        // Ajout de la classe Bootstrap 'was-validated' pour afficher les messages d'erreur  +237698394295 formateur
         form.classList.add('was-validated')
       }, false)
     })()

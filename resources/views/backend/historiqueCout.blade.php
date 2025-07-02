@@ -5,7 +5,7 @@
       <h2 style="text-align:center;">Coût total carburant par mois (année {{ $annee }})</h2>
 
     <!-- Filtre année -->
-    <form method="GET" action="{{ url('panel/historique_cout') }}" style="text-align:center; margin-bottom: 20px;">
+    {{-- <form method="GET" action="{{ url('panel/historique_cout') }}" style="text-align:center; margin-bottom: 20px;">
        <div class="row">
         <div class="form-group col-md-2">
         <label for="annee">Choisir une année : </label>
@@ -17,7 +17,40 @@
        </div>
       
        </div>
-    </form>
+    </form> --}}
+    @if($vehiculeId)
+      <h4 style="text-align:center;">Véhicule : {{ $vehicules->firstWhere('id', $vehiculeId)->immatriculation }}</h4>
+    @endif
+
+
+    <form method="GET" action="{{ url('panel/historique_cout') }}" style="text-align:center; margin-bottom: 20px;">
+        <div class="row">
+             <div class="form-group col-md-2">
+                 <label for="annee">Choisir une année :</label>
+                 <select name="annee" id="annee" onchange="this.form.submit()">
+                     @foreach($anneesDisponibles as $a)
+                         <option value="{{ $a }}" {{ $a == $annee ? 'selected' : '' }}>{{ $a }}</option>
+                     @endforeach
+                 </select>
+             </div>
+     
+             <div class="form-group col-md-3">
+                 <label for="vehicule_id">Choisir un véhicule :</label>
+                 <select name="vehicule_id" id="vehicule_id" onchange="this.form.submit()">
+                     <option value="">-- Tous les véhicules --</option>
+                     @foreach($vehicules as $vehicule)
+                         <option value="{{ $vehicule->id }}" {{ $vehiculeId == $vehicule->id ? 'selected' : '' }}>
+                             {{ $vehicule->immatriculation }}-{{ $vehicule->marque }}
+                         </option>
+                     @endforeach
+                     {{-- @foreach ($getVehicule as $item)
+                             <option value="{{$item->id}}">{{$item->marque}}-{{$item->immatriculation}}</option>
+                    @endforeach --}}
+                 </select>
+             </div>
+        </div>
+     </form>
+     
       
     <div class="col-md-2 my-3 flex-end" style="position: absolute; top:120px; right:90px;">
           <button class="btn btn-primary pull-right" onclick="exportPDF()"> Exporter en PDF</button>
@@ -114,7 +147,9 @@
 
         // Titre
         pdf.setFontSize(16);
-        pdf.text("Rapport Mensuel - Coût du Carburant ({{ $annee }})", pdfWidth / 2, 20, { align: 'center' });
+       // pdf.text("Rapport Mensuel - Coût du Carburant ({{ $annee }})", pdfWidth / 2, 20, { align: 'center' });
+       pdf.text("Rapport Mensuel - Coût du Carburant ({{ $annee }} @if($vehiculeNom) - {{ $vehiculeNom }} @endif)", pdfWidth / 2, 20, { align: 'center' });
+
 
         yOffset += 20;
 
