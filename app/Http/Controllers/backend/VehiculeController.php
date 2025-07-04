@@ -38,6 +38,12 @@ class VehiculeController extends Controller
         // request()->validate([
         //    'immatriculation' => 'required|immatriculation|unique:vehicules',
         // ]);
+
+       $request->validate([
+        'immatriculation' => 'required|unique:vehicule,immatriculation',
+        ],[
+        'immatriculation.unique' => 'Ce matricule est déjà enregistré pour un autre véhicule.',
+        ]);
         
         $vehicule = new VehiculeModel;
         $vehicule->immatriculation = trim($request->immatriculation);

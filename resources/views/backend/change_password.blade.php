@@ -23,9 +23,7 @@
                     <button type="submit" class="btn btn-primary" data-i18n="save">
                         <i class="fas fa-save"></i> Mettre a jour
                     </button>
-                    <button type="button" class="btn btn-secondary"  data-i18n="cancel">
-                        <i class="fas fa-times"></i> Annuler
-                    </button>
+                    
                 </div>
             </form>
         </div>
