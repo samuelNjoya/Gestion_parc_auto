@@ -39,16 +39,8 @@
                     </div>
 
                     <!-- Champs Type de permis et Date d'expiration (côte à côte) -->
-                    <div class="form-group side-by-side">
-                        <div>
-                            <label for="license_type">Departement <span class="required">*</span></label>
-                            <select id="license_type" name="departement" aria-required="true" value="{{ old('departement') }}">
-                                <option value="">Sélectionnez</option>
-                                <option value="departement1">departement1</option>
-                                <option value="departement2">departement2</option>
-                                <option value="departement3">departement3</option>
-                            </select>
-                        </div>
+                    <div class="form-group ">
+                       
                         <div>
                             <label for="license_expiry">Address <span class="required">*</span></label>
                             <input type="text" id="license_expiry" name="address"  aria-required="true" value="{{ old('address',$getRecords->address) }}">

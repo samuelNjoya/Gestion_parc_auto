@@ -45,7 +45,7 @@
                         <div class="invalid-feedback">Veuillez saisir un kilométrage valide.</div>
                     </div>
                     <div class="form-group">
-                        <label for="fournisseur">Fournisseur</label>
+                        <label for="fournisseur">Prestataire</label>
                             <select id="fournisseur" class="form-select" name="fournisseur_id" required>
                                 <option value=""  selected>Choisir un fournisseur</option>
                                 @foreach ($getFournisseur as $item)

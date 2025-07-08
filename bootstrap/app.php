@@ -5,6 +5,7 @@ use App\Http\Middleware\AuthCommonMiddleware;
 use App\Http\Middleware\ComptableMiddleware;
 use App\Http\Middleware\ConducteurMiddleware;
 use App\Http\Middleware\GestionnaireMiddleware;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -25,6 +26,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         ]);
     })
+     ->withSchedule(function (Schedule $schedule) {
+        // C'est ici que vous définissez vos tâches planifiées
+        $schedule->command('rappels:entretien')->dailyAt('08:00');
+    })
+   
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();

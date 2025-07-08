@@ -83,14 +83,13 @@ public function getCoutTotalAttribute()
     return ($this->cout) + $coutPieces;
 }
 
-//Pour la supression en cascade lorsqu'on supprime une intervention technique les pieces associées sont egalements supprimées
-// protected static function booted() //Methode speciale
-// {
-//     static::deleting(function ($intervention) {
-//         // Supprimer toutes les pièces liées
-//         $intervention->pieces()->delete();
-//     });
-// }
+    public function getGestionnaireReceiptMail()
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+                    // ->where('role', 4); car l'admin peut aussi creer
+    }
+
+   
 
 
 

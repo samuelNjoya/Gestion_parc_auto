@@ -81,7 +81,7 @@
                                         <th>cout<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
                                         <th>cout total<button class="btn btn-link p-0" onclick="sortTable(4)"><i class="fas fa-sort"></i></button></th>
                                         <th>kilometrage<button class="btn btn-link p-0" onclick="sortTable(5)"><i class="fas fa-sort"></i></button></th>
-                                        <th>fournisseur</th>
+                                        <th>Prestataire</th>
                                         <th>Prochaine date</th>
                                         <th>frequence</th>
                                         <th>durée immobilisation</th>

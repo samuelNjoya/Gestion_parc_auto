@@ -7,6 +7,7 @@ use App\Models\InterventionTechModel;
 use App\Models\User;
 use App\Models\VehiculeModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InterventionTechController extends Controller
 {
@@ -40,7 +41,7 @@ class InterventionTechController extends Controller
         $intervention_tech->prochaine_date = trim($request->prochaine_date) ?: null;
         $intervention_tech->frequence = trim($request->frequence);
         $intervention_tech->duree_imobilisation = trim($request->duree) ?: null;
-        // $intervention_tech->created_by_id = Auth::user()->id;
+        $intervention_tech->created_by_id = Auth::user()->id;
         $intervention_tech->save();
 
 
