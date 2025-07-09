@@ -69,8 +69,7 @@
                         <h3 class="">liste des pieces associée aux interventions techniques</h3>
                         {{-- <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i></a> --}}
                         <div class="pull-right">
-                            {{-- <a href="{{url('panel/intervention_tech/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
-                            <a href="{{url('panel/piece')}}" class="btn btn-info "><i class="fas fa-list me-1"></i>List des pieces</a>--}}
+                            <a href="{{url('panel/piece/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
                             <a href="{{url('panel/intervention_tech')}}" class="btn btn-primary "><i class="fas fa-list me-1"></i>intervention Techniques</a> 
                        </div>
                     </div>

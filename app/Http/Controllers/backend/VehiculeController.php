@@ -6,6 +6,7 @@ use App\Exports\VehiculeExport;
 use App\Http\Controllers\Controller;
 use App\Models\ConsoCarburantModel;
 use App\Models\InterventionTechModel;
+use App\Models\PieceModel;
 use App\Models\VehiculeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -174,5 +175,21 @@ class VehiculeController extends Controller
         $pdf = PDF::loadView('pdf/conso_carburant', $data);
 
         return $pdf->download('conso_carburant.pdf');
+    }
+
+     // piece
+    public function piece_pdf(){
+        $users = PieceModel::getPiece(); //Auth::user()->id, Auth::user()->is_admin
+
+        $data = [
+            'title'=>'pieces vehicule pdf',
+            'date'=>date('d-m-y'),
+            'users'=>$users
+        ];
+
+       // $pdf = app('dompdf.wrapper'); // Crée une instance de PDF
+        $pdf = PDF::loadView('pdf/piece', $data);
+
+        return $pdf->download('piece.pdf');
     }
 }

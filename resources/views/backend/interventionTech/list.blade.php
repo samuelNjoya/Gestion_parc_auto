@@ -58,8 +58,9 @@
 
                     <div class="d-flex justify-content-between mb-1">
                         <h3 class="">liste des Maintenance/Entretien</h3>
-                        {{-- <a href="{{url('panel/intervention_tech/create')}}" class="btn btn-primary pull-rigth d-block"><i class="fas fa-plus me-1"></i></a> --}}
+                        
                         <div class="pull-right">
+                            <a href="{{url('panel/historique_cout_maintenance')}}" class="btn btn-primary ">Export Graphique</a>
                             <a href="{{url('panel/intervention_tech/users_pdf')}}" class="btn btn-danger "><i class="fas fa-file-pdf me-1"></i>Print</a>
                             <a href="{{url('panel/piece')}}" class="btn btn-info "><i class="fas fa-list me-1"></i>List des pieces</a>
                             @if (Auth::user()->role == 1 || Auth::user()->role == 2) 

@@ -82,33 +82,6 @@ class CarburantController extends Controller
 
 
 
-// public function coutParMois(Request $request, $annee = null){
-//    // $annee = $annee ?? date('Y'); // Année courante par défaut
-//     $annee = $request->get('annee', $annee ?? date('Y'));
-
-//     $data = DB::table('conso_carburant')
-//         ->select(
-//             DB::raw("DATE_FORMAT(date_conso, '%b %Y') as mois"),
-//             DB::raw("SUM(cout_conso) as total_cout")
-//         )
-//         ->whereYear('date_conso', $annee)
-//         ->groupBy('mois')
-//         ->orderBy('mois')
-//         ->get();
-
-//     $labels = $data->pluck('mois');
-//     $values = $data->pluck('total_cout');
-
-//     // Liste des années disponibles pour le select
-//     $anneesDisponibles = DB::table('conso_carburant')
-//         ->select(DB::raw('YEAR(date_conso) as annee'))
-//         ->distinct()
-//         ->orderBy('annee', 'desc')
-//         ->pluck('annee');
-
-//     return view('backend.historiqueCout', compact('labels', 'values', 'annee', 'anneesDisponibles'));
-// }
-
 public function coutParMois(Request $request, $annee = null)
 {
     $annee = $request->get('annee', $annee ?? date('Y'));
