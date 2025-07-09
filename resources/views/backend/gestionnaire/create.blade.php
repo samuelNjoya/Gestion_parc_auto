@@ -12,13 +12,13 @@
                         <div class="form-group full-width">
                             <label for="last_name">Nom <span class="required">*</span></label>
                             <input type="text" id="last_name" name="nom"  aria-required="true"
-                                placeholder="Entrez le nom" value="{{ old('nom') }}">
+                                placeholder="Entrez le nom" value="{{ old('nom') }}" required>
                         </div>
                             <!-- Champ Prénom (pleine largeur) -->
                         <div class="form-group full-width">
                             <label for="first_name">Prénom <span class="required">*</span></label>
                             <input type="text" id="first_name" name="prenom"  aria-required="true"
-                                placeholder="Entrez le prénom" value="{{ old('prenom') }}">
+                                placeholder="Entrez le prénom" value="{{ old('prenom') }}" required>
                         </div>
                     </div>
                     
@@ -29,12 +29,12 @@
                     <div class="form-group side-by-side">
                         <div>
                             <label for="birth_date">Date de naissance <span class="required">*</span></label>
-                            <input type="date" id="birth_date" name="date_naiss"  aria-required="true" value="{{ old('date_naiss') }}">
+                            <input type="date" id="birth_date" name="date_naiss" required  aria-required="true" value="{{ old('date_naiss') }}">
                         </div>
                         <div>
                             <label for="license_number">mot de pass <span class="required">*</span></label>
                             <input type="password" id="license_number" name="motDePass" aria-required="true"
-                                placeholder="*******">
+                                placeholder="*******" required>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                         </div> --}}
                         <div>
                             <label for="license_expiry">Address <span class="required">*</span></label>
-                            <input type="text" id="license_expiry" name="address"  aria-required="true" value="{{ old('address') }}">
+                            <input type="text" id="license_expiry" name="address"   aria-required="true" value="{{ old('address') }}">
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                         <div class="form-group full-width">
                             <label for="email">Email <span class="required">*</span></label>
                             <input type="email" id="email" name="email"  aria-required="true"
-                                placeholder="Entrez l'email" value="{{ old('email') }}">
+                                placeholder="Entrez l'email" value="{{ old('email') }}" required>
                                  <div style="color: red">{{ $errors->first('email') }}</div>
                         </div>
                         

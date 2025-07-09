@@ -98,7 +98,7 @@
                                 @forelse ($getRecords as $item)  
                                     <tr >
                                             <td >{{$item->id}}</td> 
-                                            <td >{{$item->getInterventionTechnique->titre}} - ({{$item->getInterventionTechnique->getVehicule->immatriculation}})</td>
+                                            <td >{{$item->getInterventionTechnique?->titre}} - ({{$item->getInterventionTechnique?->getVehicule->immatriculation}})</td>
                                             <td >{{$item->nom}}</td>
                                             <td >{{$item->reference}}</td>
                                             <td >{{ date('d-m-y', strtotime($item->date_installation)) }}</td>
