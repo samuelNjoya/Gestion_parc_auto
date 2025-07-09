@@ -14,6 +14,7 @@ use App\Http\Controllers\backend\PanneController;
 use App\Http\Controllers\backend\PieceController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\VehiculeController;
+use App\Models\InterventionTechModel;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -111,13 +112,16 @@ Route::group(['middleware' => 'common'], function(){
    Route::post('panel/documentsVehicule/edit/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_update']);
    Route::get('panel/documentsVehicule/delete/{id}',[DocumentsVehiculeController::class, 'documentsVehicule_delete']);
 
-   //intervention_tech
+   //Intervention_tech
    Route::get('panel/intervention_tech',[InterventionTechController::class, 'intervention_tech_list']);
    Route::get('panel/intervention_tech/create',[InterventionTechController::class, 'intervention_tech_create']);
    Route::post('panel/intervention_tech/create',[InterventionTechController::class, 'intervention_tech_insert']);
    Route::get('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_edit']);
    Route::post('panel/intervention_tech/edit/{id}',[InterventionTechController::class, 'intervention_tech_update']);
    Route::get('panel/intervention_tech/delete/{id}',[InterventionTechController::class, 'intervention_tech_delete']);
+
+   //historique cout dans le diagramme en bande
+   Route::get('panel/historique_cout_maintenance/{annee?}',[InterventionTechController::class, 'coutParMois']);
 
    //Pièce
    Route::get('panel/piece',[PieceController::class, 'piece_list']);
@@ -158,6 +162,9 @@ Route::group(['middleware' => 'common'], function(){
    //consommation carburant
    Route::get('panel/conso_carburant/users_excel',[VehiculeController::class, 'conso_carburant_excel']);
    Route::get('panel/conso_carburant/users_pdf',[VehiculeController::class, 'conso_carburant_pdf']);
+
+   //Pièce
+   Route::get('panel/piece/users_pdf',[VehiculeController::class, 'piece_pdf']);
 
 // Route::group(['middleware' => 'gestionnaire'], function(){
 //     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);  

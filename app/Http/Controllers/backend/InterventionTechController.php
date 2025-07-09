@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\VehiculeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InterventionTechController extends Controller
 {
@@ -92,6 +93,58 @@ class InterventionTechController extends Controller
 
             return redirect('panel/intervention_tech')->with('success', 'Supprimé avec succès');
         }
+
+
+    public function coutParMois(Request $request, $annee = null)
+    {
+        $annee = $request->get('annee', $annee ?? date('Y'));
+        $vehiculeId = $request->get('vehicule_id'); // nouveau paramètre
+
+        $query = DB::table('intervention_technique')
+            ->join('vehicule', 'vehicule.id', '=', 'intervention_technique.vehicule_id')
+            ->select(
+                DB::raw("DATE_FORMAT(date, '%b %Y') as mois"),
+                DB::raw("SUM(cout) as total_cout")
+            )
+            ->whereYear('date', $annee);
+
+        if (!empty($vehiculeId)) {
+            $query->where('vehicule_id', $vehiculeId);
+        }
+
+        $data = $query
+            ->groupBy('mois')
+            ->orderBy('mois')
+            ->get();
+
+        $labels = $data->pluck('mois');
+        $values = $data->pluck('total_cout');
+
+        $anneesDisponibles = DB::table('intervention_technique')
+            ->select(DB::raw('YEAR(date) as annee'))
+            ->distinct()
+            ->orderBy('annee', 'desc')
+            ->pluck('annee');
+
+        $vehicules = DB::table('vehicule')->get();
+
+        $vehiculeNom = null;
+        if ($vehiculeId) {
+            $vehicule = DB::table('vehicule')->where('id', $vehiculeId)->first();
+            $vehiculeNom = $vehicule ? $vehicule->immatriculation : null;
+        }
+
+
+        return view('backend.historiqueCoutMaintenance', compact(
+            'labels',
+            'values',
+            'annee',
+            'anneesDisponibles',
+            'vehicules',
+            'vehiculeId',
+            'vehiculeNom'
+        ));
+    }
 
     
 }
