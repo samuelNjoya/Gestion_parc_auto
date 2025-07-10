@@ -107,7 +107,8 @@
                                             <td >{{$item->getVehicule->marque}}</td>
                                             <td >{{$item->type}} </td>
                                             <td >{{ date('d-m-y', strtotime($item->date_derniere_mise_ajour)) }}</td>
-                                            <td >{{ date('d-m-y', strtotime($item->date_expiration)) }}</td>
+                                            {{-- <td >{{ date('d-m-y', strtotime($item->date_expiration)) }}</td> --}}
+                                            <td>{{ $item->date_expiration ? \Carbon\Carbon::parse($item->date_expiration)->format('d/m/Y') : '' }}</td>
                                             <td >
                                                 @if (!empty($item->getDocumentVehiculeScan()))
                                                     {{-- <img style="border-radius: 50%" width="60px" height="60px"  src="{{ $item->getDocumentVehiculeScan() }}" alt=""> --}}

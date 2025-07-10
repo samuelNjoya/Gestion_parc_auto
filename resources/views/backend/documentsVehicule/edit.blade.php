@@ -33,11 +33,11 @@
                     <div class="form-group side-by-side">
                         <div class="form-group">
                             <label for="date">Date dernière mise a jour</label>
-                            <input type="date" id="date" name="date_derniere_mise_ajour" value="{{ old('date_derniere_mise_ajour',$getRecords->date_expiration) }}" required>
+                            <input type="date" id="date" name="date_derniere_mise_ajour" value="{{ old('date_derniere_mise_ajour',$getRecords->date_derniere_mise_ajour) }}" required>
                         </div>
                          <div class="form-group">
                             <label for="date">Date expiration</label>
-                            <input type="date" id="date" name="date_expiration" value="{{ old('date_expiration',$getRecords->date_expiration) }}" required>
+                            <input type="date" id="date" name="date_expiration" value="{{ old('date_expiration',$getRecords->date_expiration) }}" >
                         </div>
                     </div>
                     

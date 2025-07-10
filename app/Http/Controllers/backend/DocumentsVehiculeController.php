@@ -39,9 +39,9 @@ class DocumentsVehiculeController extends Controller
         $documentsVehicule->vehicule_id = trim($request->vehicule_id);
         $documentsVehicule->type = trim($request->document_vehicule);
         $documentsVehicule->date_derniere_mise_ajour = trim($request->date_derniere_mise_ajour);
-        $documentsVehicule->date_expiration = trim($request->date_expiration);
+        $documentsVehicule->date_expiration = trim($request->date_expiration) ?: null;
         $documentsVehicule->statut = trim($request->statut);
-        // $documentsVehicule->created_by_id = Auth::user()->id;
+        $documentsVehicule->created_by_id = Auth::user()->id;
         $documentsVehicule->save();
 
         if(!empty($request->file('profile_pic'))){
@@ -76,7 +76,7 @@ class DocumentsVehiculeController extends Controller
        $documentsVehicule->vehicule_id = trim($request->vehicule_id);
         $documentsVehicule->type = trim($request->document_vehicule);
         $documentsVehicule->date_derniere_mise_ajour = trim($request->date_derniere_mise_ajour);
-        $documentsVehicule->date_expiration = trim($request->date_expiration);
+        $documentsVehicule->date_expiration = trim($request->date_expiration) ?: null;
         $documentsVehicule->statut = trim($request->statut);
         $documentsVehicule->save();
     
