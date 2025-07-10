@@ -64,4 +64,10 @@ class DocumentVehiculeModel extends Model
         return $this->belongsTo(VehiculeModel::class, 'vehicule_id');
     }
 
+    public function getGestionnaireReceiptMail()
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+                    // ->where('role', 4); car l'admin peut aussi creer
+    }
+
 }

@@ -36,7 +36,7 @@
                         </div>
                          <div class="form-group">
                             <label for="date">Date expiration</label>
-                            <input type="date" id="date" name="date_expiration" value="{{ old('date_expiration') }}" required>
+                            <input type="date" id="date" name="date_expiration" value="{{ old('date_expiration') }}" >
                         </div>
                     </div>
                     
@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                             <label for="license_type">Statut <span class="required">*</span></label>
-                            <select id="license_type" name="statut" required aria-required="true">
+                            <select id="license_type" required name="statut" required aria-required="true">
                                 <option value="">Sélectionnez</option>
                                 <option value="1">Valide</option>
                                 <option value="0">Expirer</option>
@@ -59,7 +59,7 @@
                     <!-- Boutons avec classes Bootstrap -->
                     <div class="d-flex gap-2">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</button>
-                        <button type="button" class="btn btn-secondary" ><i class="fas fa-times"></i> Annuler</button>
+                        {{-- <button type="button" class="btn btn-secondary" ><i class="fas fa-times"></i> Annuler</button> --}}
                     </div>
                 </form>
             </div>
