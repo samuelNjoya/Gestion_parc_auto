@@ -21,10 +21,12 @@
                             <label >Type</label>
                             <select  name="document_vehicule" required>
                                 <option value=""  selected>Choisir un document</option>
-                                <option {{ ($getRecords->type == "carte_Grise") ? 'selected' : '' }} value="carte_Grise" >Carte Grise</option>
-                                <option {{ ($getRecords->type == "assurance") ? 'selected' : '' }} value="assurance">Assurance</option>
-                                <option {{ ($getRecords->type == "controle_technique") ? 'selected' : '' }} value="controle_technique"  >Controle technique</option>
-                                <option {{ ($getRecords->type == "certificat_conformite") ? 'selected' : '' }} value="certificat_conformite"  >Certificat de conformite</option>
+                                <option {{ ($getRecords->type == "carte_Grise") ? 'selected' : '' }} value="carte Grise" >Carte Grise</option>
+                                <option {{ ($getRecords->type == "assurance") ? 'selected' : '' }} value="assurance automobile">Assurance automobile</option>
+                                <option {{ ($getRecords->type == "controle_technique") ? 'selected' : '' }} value="controle technique"  >Controle technique</option>
+                                <option {{ ($getRecords->type == "certificat_conformite") ? 'selected' : '' }} value="certificat conformite"  >Certificat de conformite</option>
+                                <option {{ ($getRecords->type == "certificat_immatriculation") ? 'selected' : '' }} value="certificat d'immatriculation"  >Certificat d'immatriculation</option>
+                                <option {{ ($getRecords->type == "certificat_de_visite") ? 'selected' : '' }} value="certificat de visite"  >Certificat de visite</option>
                     
                             </select>
                         </div>

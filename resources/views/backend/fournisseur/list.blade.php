@@ -21,7 +21,7 @@
                             </div>
 
                              <div class="form-group col-sm-4 col-md-3 col-lg-2 ">
-                                <label for="filter-vehicle">Prenom</label>
+                                <label for="filter-vehicle">Type</label>
                                 <input type="text"  value="{{ Request::get('prenom') }}" placeholder="prenom" name="prenom">
                             </div>
 

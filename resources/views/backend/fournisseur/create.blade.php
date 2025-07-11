@@ -16,7 +16,7 @@
                         </div>
                             <!-- Champ Prénom (pleine largeur) -->
                         <div class="form-group full-width">
-                            <label for="first_name">Prénom <span class="required">*</span></label>
+                            <label for="first_name">Type <span class="required">*</span></label>
                             <input type="text" id="first_name" name="prenom"  aria-required="true"
                                 placeholder="Entrez le prénom" value="{{ old('prenom') }}">
                         </div>

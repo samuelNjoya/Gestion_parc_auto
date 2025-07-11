@@ -21,10 +21,12 @@
                             <label >Type</label>
                             <select  name="document_vehicule" required>
                                 <option value=""  selected>Choisir un document</option>
-                                <option value="carte_Grise"  >Carte Grise</option>
-                                <option value="assurance"  >Assurance</option>
-                                <option value="controle_technique"  >Controle technique</option>
-                                <option value="certificat_conformite"  >Certificat de conformite</option>
+                                <option value="carte Grise"  >Carte Grise</option>
+                                <option value="assurance automobile"  >Assurance automobile</option>
+                                <option value="controle technique"  >Controle technique</option>
+                                <option value="certificat conformite"  >Certificat de conformite</option>
+                                <option value="certificat d'immatriculation"  >Certificat d'immatriculation</option>
+                                <option value="certificat de visite"  >Certificat de visite</option>
                             </select>
                         </div>
                     </div>
