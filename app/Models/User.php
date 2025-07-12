@@ -240,7 +240,7 @@ class User extends Authenticatable
  
  public function vehicules():BelongsToMany
 {
-    return $this->belongsToMany(VehiculeModel::class, 'affectation-vehecule', 'conducteur_id', 'vehicule_id')
+    return $this->belongsToMany(VehiculeModel::class, 'affectation_vehecule', 'conducteur_id', 'vehicule_id')
                 ->withPivot('description', 'date_debut', 'date_fin', 'statut', 'is_delete', 'updated_at', 'created_at')
                 ->wherePivot('is_delete', 0) // si vous souhaitez filtrer les non-supprimés
                 ->wherePivot('statut', 1); // si vous souhaitez filtrer par statut

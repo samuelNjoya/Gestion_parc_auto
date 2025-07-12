@@ -74,7 +74,7 @@ class VehiculeModel extends Model
     //affecter vehicule
     public function conducteurs()
 {
-    return $this->belongsToMany(User::class, 'affectation-vehecule','vehicule_id', 'conducteur_id')
+    return $this->belongsToMany(User::class, 'affectation_vehecule','vehicule_id', 'conducteur_id')
                 ->using(AffecterVehiculeModel::class)
                 ->withPivot('date_affectation', 'statut')
                 ->withTimestamps();

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Request;
 
 class AffecterVehiculeModel extends Model
 {
-    protected $table = 'affectation-vehecule';
+    protected $table = 'affectation_vehecule';
 
     static public function getSingle($id){
         // return SubjectModel::find($id);
@@ -19,9 +19,9 @@ class AffecterVehiculeModel extends Model
 
     static public function getAffectationVehicule(){
         // $return = self::select('*');
-        $return = self::select('affectation-vehecule.*', 'vehicule.immatriculation', 'vehicule.marque')
-           ->join('vehicule', 'vehicule.id', '=', 'affectation-vehecule.vehicule_id')
-           ->join('users', 'users.id', '=', 'affectation-vehecule.conducteur_id');
+        $return = self::select('affectation_vehecule.*', 'vehicule.immatriculation', 'vehicule.marque')
+           ->join('vehicule', 'vehicule.id', '=', 'affectation_vehecule.vehicule_id')
+           ->join('users', 'users.id', '=', 'affectation_vehecule.conducteur_id');
 
             if(!empty(Request::get('id'))){
                  $return = $return->where('id', '=', Request::get('id'));
@@ -43,11 +43,11 @@ class AffecterVehiculeModel extends Model
                 if ($statut == 100) {
                     $statut = 0;
                 }
-                $return = $return->where('affectation-vehecule.statut', '=', $statut);
+                $return = $return->where('affectation_vehecule.statut', '=', $statut);
              }
 
-     $return = $return->where('affectation-vehecule.is_delete', '=', 0)//whereIn
-                ->orderBy('affectation-vehecule.id', 'desc')
+     $return = $return->where('affectation_vehecule.is_delete', '=', 0)//whereIn
+                ->orderBy('affectation_vehecule.id', 'desc')
                 ->paginate(10);   
         return $return;
     }
