@@ -21,20 +21,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('auth.login');
 // });
 
-Route::get('/import-sql', function () {
-    $path = database_path('scripts/parc_auto.sql');
+// Route::get('/import-sql', function () {
+//     $path = database_path('scripts/parc_auto.sql');
 
-    if (!file_exists($path)) {
-        return "❌ Le fichier SQL est introuvable.";
-    }
+//     if (!file_exists($path)) {
+//         return "❌ Le fichier SQL est introuvable.";
+//     }
 
-    try {
-        DB::unprepared(file_get_contents($path));
-        return "✅ Base de données importée avec succès.";
-    } catch (\Exception $e) {
-        return "❌ Erreur : " . $e->getMessage();
-    }
-});
+//     try {
+//         DB::unprepared(file_get_contents($path));
+//         return "✅ Base de données importée avec succès.";
+//     } catch (\Exception $e) {
+//         return "❌ Erreur : " . $e->getMessage();
+//     }
+// });
 
 Route::get('/',[AuthController::class,'login']);
 Route::get('logout',[AuthController::class, 'logout']);
